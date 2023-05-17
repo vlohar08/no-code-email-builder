@@ -1,0 +1,37 @@
+@use "../../abstracts/" as *;
+
+.app-header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 15px 10px;
+  background-color: rgb(var(--secondary-bg-color));
+  box-shadow: var(--medium-box-shadow);
+  > div {
+    @include centerBy("flex");
+    gap: 10px;
+    p {
+      font-size: 16px;
+      max-width: 20ch;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+  .site-logo {
+    width: 250px;
+    height: auto;
+  }
+  .user-avatar {
+    border-radius: 50%;
+  }
+}
+
+@media (max-width: $mobile) {
+  .site-logo {
+    margin: auto;
+  }
+  .app-header-wrapper > div {
+    display: none;
+  }
+}

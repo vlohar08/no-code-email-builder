@@ -9,7 +9,7 @@
     max-width: 500px;
     @include centerBy("position");
   }
-  img[alt="Linklush Logo"] {
+  .site-logo {
     width: 60%;
     min-width: 200px;
     height: auto;

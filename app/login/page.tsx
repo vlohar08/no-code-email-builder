@@ -21,7 +21,11 @@ function Login() {
   return (
     <section className="login-page-wrapper">
       <div>
-        <Image src={SiteLogo} alt="Linklush Logo" />
+        <Image
+          className="site-logo"
+          src={SiteLogo}
+          alt="No Code Email Builder Logo"
+        />
         <h3 className="brand-tagline">
           Create stunning emails using our Drag and Drop editor!
         </h3>

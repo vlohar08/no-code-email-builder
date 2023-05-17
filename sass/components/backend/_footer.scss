@@ -1,0 +1,27 @@
+@use "../../abstracts/" as *;
+
+.app-footer-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 10px;
+  background-color: rgb(var(--secondary-bg-color));
+  img {
+    width: 200px;
+    height: auto;
+  }
+  a {
+    font-size: 16px;
+    color: black;
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
+
+@media (max-width: $tablet) {
+  .app-footer-wrapper {
+    flex-direction: column;
+  }
+}

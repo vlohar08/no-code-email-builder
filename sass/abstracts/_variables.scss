@@ -9,8 +9,19 @@
   --success-color: 40, 199, 111;
   --warning-color: 255, 180, 109;
   --info-color: 0, 207, 232;
-  --default-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+  // Box Shadow
+  --light-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+  --medium-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+  --normal-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.4);
+  --dark-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5);
+  --extra-dark-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.7);
+  //Border Colors
   --light-border-color: rgba(0, 0, 0, 0.15);
+  --medium-border-color: rgba(0, 0, 0, 0.3);
+  --normal-border-color: rgba(0, 0, 0, 0.4);
+  --dark-border-color: rgba(0, 0, 0, 0.6);
+  --extra-dark-border-color: rgba(0, 0, 0, 0.8);
+
   --slow-animation-time: 0.5s;
   --normal-animation-time: 0.3s;
   --fast-animation-time: 0.2s;
