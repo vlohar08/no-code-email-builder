@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap");
+
+* {
+  font-family: "Comfortaa", "Segoe UI", Tahoma, Verdana, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: rgb(var(--primary-text-color));
+  font-weight: 500;
+}
+
+span:not([class]) {
+  color: rgb(var(--primary-text-color));
+  opacity: 0.7;
+}

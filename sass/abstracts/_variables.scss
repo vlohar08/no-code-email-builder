@@ -1,0 +1,27 @@
+:root {
+  --primary-color: 72, 142, 255;
+  --primary-bg-color: 255, 255, 255;
+  --secondary-bg-color: 248, 247, 250;
+  --popup-bg-color: 0, 0, 0;
+  --pagination-color: 239, 239, 240;
+  --primary-text-color: 77, 75, 85;
+  --error-color: 234, 84, 85;
+  --success-color: 40, 199, 111;
+  --warning-color: 255, 180, 109;
+  --info-color: 0, 207, 232;
+  --default-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+  --light-border-color: rgba(0, 0, 0, 0.15);
+  --slow-animation-time: 0.5s;
+  --normal-animation-time: 0.3s;
+  --fast-animation-time: 0.2s;
+}
+
+.backend-dark-theme {
+  --primary-bg-color: 47, 51, 73;
+  --secondary-bg-color: 37, 41, 60;
+  --popup-bg-color: 255, 255, 255;
+  --pagination-color: 61, 65, 86;
+  --primary-text-color: 204, 207, 221;
+  --default-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+  --light-border-color: rgba(255, 255, 255, 0.15);
+}

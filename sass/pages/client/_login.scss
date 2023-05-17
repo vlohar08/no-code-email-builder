@@ -1,0 +1,35 @@
+@use "../../abstracts/" as *;
+
+.login-page-wrapper {
+  > div {
+    border: 1px solid var(--light-border-color);
+    border-radius: 10px;
+    padding: 20px;
+    width: 95%;
+    max-width: 500px;
+    @include centerBy("position");
+  }
+  img[alt="Linklush Logo"] {
+    width: 60%;
+    min-width: 200px;
+    height: auto;
+    margin: auto;
+    margin-bottom: 15px;
+  }
+  .brand-tagline {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  form {
+    button {
+      background-color: white;
+      color: black;
+      border: 1px solid var(--light-border-color);
+      margin-top: 10px;
+      &:hover {
+        background-color: rgba(var(--primary-color), 0.3);
+      }
+    }
+  }
+}

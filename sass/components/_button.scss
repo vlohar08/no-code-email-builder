@@ -1,0 +1,15 @@
+@use "../abstracts/" as *;
+
+.button-wrapper {
+  button {
+    @include centerBy("flex");
+    gap: 10px;
+    width: 100%;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all var(--fast-animation-time) ease;
+  }
+}

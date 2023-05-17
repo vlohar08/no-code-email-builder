@@ -1,0 +1,38 @@
+@use "../abstracts/" as *;
+
+.input-wrapper {
+  > div {
+    position: relative;
+  }
+  input {
+    width: 100%;
+    border: 1px solid var(--light-border-color);
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  input,
+  label {
+    font-size: 16px;
+  }
+  label {
+    @include centerVerticalBy("position");
+    left: 10px;
+    transition: all var(--fast-animation-time) ease;
+  }
+  input:focus + label,
+  input:not(:placeholder-shown) + label {
+    top: 0;
+    background-color: white;
+    font-size: 14px;
+  }
+  p {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    color: maroon;
+    margin-top: 5px;
+  }
+}
