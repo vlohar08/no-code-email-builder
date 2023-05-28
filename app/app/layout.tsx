@@ -6,7 +6,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Header />
-      {children}
+      <main style={{ minHeight: "calc(100vh - 140px)" }}>{children}</main>
       <Footer />
     </>
   );

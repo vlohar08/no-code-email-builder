@@ -53,11 +53,11 @@ function App() {
     },
   ];
   return (
-    <main className="app-wrapper">
+    <div className="app-wrapper">
       {dummyData.map((email) => (
         <EmailDisplayCard key={email.id} {...email} />
       ))}
-    </main>
+    </div>
   );
 }
 
