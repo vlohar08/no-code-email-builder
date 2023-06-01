@@ -1,0 +1,23 @@
+@use "../../abstracts/" as *;
+
+.input-with-side-label-wrapper {
+  width: 100%;
+  > div {
+    display: flex;
+    border: 1px solid var(--light-border-color);
+    border-radius: 5px;
+    margin: 10px 0;
+  }
+  label {
+    font-weight: bold;
+    border-right: 1px solid var(--light-border-color);
+    padding: 5px;
+    font-size: 16px;
+  }
+  input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 5px;
+  }
+}

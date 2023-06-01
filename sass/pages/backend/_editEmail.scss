@@ -1,0 +1,10 @@
+@use "../../abstracts/" as *;
+
+.edit-email-wrapper {
+  display: flex;
+
+  .email-editor {
+    width: calc(100vw - 400px);
+    height: auto;
+  }
+}

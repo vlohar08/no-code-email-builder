@@ -14,9 +14,7 @@ function Login() {
     formState: { errors },
   } = useForm();
 
-  function handleLogin() {
-    console.log("test");
-  }
+  function handleLogin() {}
 
   return (
     <section className="login-page-wrapper">

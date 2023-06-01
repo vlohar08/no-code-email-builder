@@ -1,0 +1,60 @@
+@use "../../abstracts/" as *;
+
+.sidebar-settings-wrapper {
+  overflow-y: auto;
+  height: calc(100vh - 190px);
+  .default-two-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    align-items: center;
+    > div {
+      margin-left: auto;
+    }
+  }
+  .default-border {
+    border-bottom: 1px solid var(--light-border-color);
+  }
+  .default-padding {
+    padding: 10px 20px;
+  }
+  p {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  .section-separator {
+    background-color: #eaeaea;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 7px 20px;
+  }
+  input[type="range"] {
+    width: 100%;
+    accent-color: rgb(var(--primary-color));
+    margin: 10px 0;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    cursor: pointer;
+  }
+  input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: rgb(var(--primary-color));
+  }
+  .svg-option {
+    svg {
+      vertical-align: middle;
+      margin-left: 10px;
+      color: grey;
+      &[data-active="true"] {
+        color: black;
+      }
+    }
+  }
+}

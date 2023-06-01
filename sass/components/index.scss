@@ -2,3 +2,27 @@
 @forward "./client/index.scss";
 @forward "./input.scss";
 @forward "./button.scss";
+
+.toggle-button {
+  position: relative;
+  background-color: lightgrey;
+  border-radius: 50px;
+  width: 50px;
+  height: 25px;
+  justify-self: end;
+  cursor: pointer;
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50px;
+    background-color: rgba(var(--primary-color), 0.7);
+    transition: all var(--fast-animation-time) ease;
+  }
+  &[data-active="true"]::before {
+    transform: translate(25px);
+    background-color: rgb(var(--primary-color));
+  }
+}

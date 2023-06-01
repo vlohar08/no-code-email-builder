@@ -1,5 +1,6 @@
 import { IconExclamationCircle } from "@tabler/icons-react";
-import React, { forwardRef, useId } from "react";
+import { nanoid } from "nanoid";
+import React, { forwardRef } from "react";
 import { FieldValues, UseFormRegister } from "react-hook-form/dist/types";
 
 interface InputProps extends Partial<UseFormRegister<FieldValues>> {
@@ -18,7 +19,7 @@ function Input(
   }: InputProps,
   ref: any
 ) {
-  const inputId = useId();
+  const inputId = nanoid(10);
   return (
     <div className="input-wrapper">
       <div>

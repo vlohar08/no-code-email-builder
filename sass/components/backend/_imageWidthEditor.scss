@@ -1,0 +1,18 @@
+@use "../../abstracts/" as *;
+
+.image-width-editor-wrapper {
+  .option-switch-wrapper {
+    > div {
+      display: flex;
+      gap: 5px;
+      &:first-child {
+        justify-content: space-between;
+      }
+    }
+  }
+  .image-width-range-slider {
+    @include centerVerticalBy("flex");
+    gap: 10px;
+    margin: 10px 0;
+  }
+}

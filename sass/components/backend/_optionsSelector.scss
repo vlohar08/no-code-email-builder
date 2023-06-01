@@ -1,0 +1,12 @@
+@use "../../abstracts/" as *;
+
+.options-selector-wrapper {
+  select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid var(--light-border-color);
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;
+  }
+}

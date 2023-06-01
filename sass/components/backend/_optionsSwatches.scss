@@ -1,0 +1,25 @@
+@use "../../abstracts/" as *;
+
+.options-swatches-wrapper {
+  p {
+    display: flex;
+    justify-content: space-between;
+  }
+  > div {
+    justify-self: end;
+  }
+  button {
+    width: fit-content;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    &:first-child {
+      margin-right: 10px;
+    }
+    &[data-active="true"] {
+      background-color: rgb(var(--primary-color));
+      color: white;
+    }
+  }
+}

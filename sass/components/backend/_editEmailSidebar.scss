@@ -1,0 +1,43 @@
+@use "../../abstracts/" as *;
+
+.edit-email-sidebar-wrapper {
+  width: 400px;
+  height: calc(100vh - 140px);
+  border: 1px solid var(--light-border-color);
+  .sidebar-tabs {
+    display: flex;
+    > div {
+      width: 50%;
+      border: 1px solid var(--light-border-color);
+      padding: 10px 20px;
+      font-size: 18px;
+      text-align: center;
+      cursor: pointer;
+      &:hover,
+      &[data-active="true"] {
+        background-color: rgba(var(--primary-color), 0.4);
+      }
+    }
+  }
+  .sidebar-element {
+    background-color: rgb(var(--primary-bg-color));
+    border: 1px solid var(--light-border-color);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: move;
+    h5 {
+      font-size: 18px;
+      user-select: none;
+    }
+    &:hover {
+      background-color: rgb(var(--secondary-bg-color));
+    }
+  }
+  .sidebar-elements {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    padding: 20px;
+  }
+}

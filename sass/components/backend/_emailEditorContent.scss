@@ -1,0 +1,27 @@
+@use "../../abstracts/" as *;
+
+.email-editor-content-wrapper {
+  height: 100%;
+  .element-hover {
+    outline: 2px solid rgb(var(--primary-color));
+    background-color: rgba(var(--primary-color), 0.1);
+    cursor: pointer;
+  }
+  .section-element {
+    width: 100%;
+  }
+  .column-element {
+    padding: 30px;
+  }
+  .content-element {
+    &:hover {
+      outline: 2px solid rgb(var(--primary-color));
+      background-color: rgba(var(--primary-color), 0.1);
+      cursor: pointer;
+    }
+  }
+  .hide-on-desktop {
+  }
+  .hide-on-mobile {
+  }
+}

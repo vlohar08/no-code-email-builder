@@ -1,0 +1,8 @@
+@use "../../abstracts/" as *;
+
+.range-slider-wrapper {
+  p {
+    display: flex;
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,19 @@
+@use "../../abstracts/" as *;
+
+.hide-on-mobile-and-desktop-button-wrapper {
+  > div {
+    display: flex;
+    gap: 5px;
+  }
+  button {
+    @include centerBy("flex");
+    border-radius: 5px;
+    padding: 2px 10px;
+    border: 1px solid var(--light-border-color);
+    height: fit-content;
+    &[data-active="true"] {
+      background-color: rgb(var(--primary-color));
+      color: white;
+    }
+  }
+}

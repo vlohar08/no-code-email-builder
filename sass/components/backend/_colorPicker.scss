@@ -1,0 +1,25 @@
+@use "../../abstracts/" as *;
+
+.color-picker-wrapper {
+  input[type="color"] {
+    cursor: pointer;
+  }
+  input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+  p {
+    display: flex;
+    justify-content: space-between;
+  }
+  > div {
+    width: 154px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    border: 1px solid var(--light-border-color);
+    box-shadow: var(--light-box-shadow);
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+}

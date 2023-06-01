@@ -1,62 +1,76 @@
+export type Padding = {
+  paddingTop: number;
+  paddingRight: number;
+  paddingBottom: number;
+  paddingLeft: number;
+};
+
+export type SelectedElement = {
+  id: string;
+  element: string;
+  settings: any;
+};
+
 export type SectionElement = {
+  id: string;
   index: number;
-  "background-color": string;
-  "background-image": string;
-  "hide-on": "mobile" | "desktop";
+  name: "section";
+  backgroundColor: string;
+  backgroundImage: string;
+  hideOn?: "mobile" | "desktop";
   content: {
-    "background-color": string;
-    "align-items": "start" | "center" | "end";
-    "border-radius": string;
+    backgroundColor: string;
+    alignItems: "start" | "center" | "end";
+    borderRadius: string;
     border: string;
-    "stack-on-mobile": boolean;
+    stackOnMobile: boolean;
   };
   columns: {
     id: string;
-    index: number;
-    "background-color": string;
-    padding: string;
+    name: string;
+    backgroundColor: string;
+    padding: number | Padding;
     border: string;
+    content: {}[];
   }[];
 };
 
 export type HeadingElement = {
   id: string;
-  index: number;
   name: "heading";
   content: string;
   settings: {
-    title: "H1" | "H2" | "H3";
-    "font-family": string;
-    "font-weight": number;
-    "font-size": number;
-    "text-color": string;
-    "link-color": string;
-    align: string;
-    "line-height": number;
-    "letter-spacing": number;
+    title: "h1" | "h2" | "h3";
+    fontFamily: string;
+    fontWeight: number;
+    fontSize: number;
+    textColor: string;
+    linkColor: string;
+    textAlign: "left" | "right" | "center" | "justify";
+    lineHeight: number;
+    letterSpacing: number;
     block: {
-      padding: string;
-      "hide-on": "mobile" | "desktop";
+      padding: number | Padding;
+      hideOn?: "mobile" | "desktop";
     };
   };
 };
 
+export type GlobalSettings = {
+  backgroundColor: string;
+  contentAreaBackgroundColor: string;
+  contentAreaWidth: number;
+  linkColor: string;
+  contentAreaAlignment: string;
+  showBackgroundImage: boolean;
+  backgroundImageUrl: string;
+  shouldBackgroundImageRepeat: boolean;
+  isBackgroundImageCentered: boolean;
+};
+
 export type EmailEditorContextTypes = {
   activeSidebarTab: "elements" | "settings";
-  selectedElement?: {
-    id: string;
-    name: string;
-  };
-  settings: {
-    backgroundColor: string;
-    contentAreaBackgroundColor: string;
-    contentWidth: number;
-    linkColor: string;
-    contentAreaAlignment: string;
-    showBackgroundImage: boolean;
-    backgroundImageUrl: string;
-    shouldBackgroundImageRepeat: boolean;
-    isBackgroundImageCentered: boolean;
-  };
+  selectedElement: SelectedElement | null;
+  settings: GlobalSettings;
   content: {}[];
 };

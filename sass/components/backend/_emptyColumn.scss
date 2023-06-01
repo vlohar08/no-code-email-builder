@@ -1,0 +1,12 @@
+@use "../../abstracts/" as *;
+
+.empty-column-wrapper {
+  width: 100%;
+  padding: 25px;
+  background-color: rgba(var(--primary-color), 0.3);
+  border: 2px dashed rgb(var(--primary-color));
+  p {
+    font-size: 14px;
+    text-align: center;
+  }
+}

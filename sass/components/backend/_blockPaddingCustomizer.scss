@@ -1,0 +1,23 @@
+@use "../../abstracts/" as *;
+
+.block-padding-customizer-wrapper {
+  > div {
+    justify-content: space-between;
+  }
+  > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 15px;
+  }
+  > div:first-child > div {
+    @include centerVerticalBy("flex");
+    justify-content: end;
+    gap: 5px;
+  }
+  .input-with-plus-minus-buttons-wrapper {
+    border-bottom: none !important;
+    > div {
+      justify-content: start;
+    }
+  }
+}

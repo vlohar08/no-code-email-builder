@@ -1,0 +1,11 @@
+@use "../../abstracts/" as *;
+
+.line-height-options-selector-wrapper {
+  svg {
+    margin-left: 10px;
+    color: grey;
+    &[data-active="true"] {
+      color: black;
+    }
+  }
+}
