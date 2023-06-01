@@ -37,6 +37,7 @@ export type SectionElement = {
 
 export type HeadingElement = {
   id: string;
+  index: number;
   name: "heading";
   content: string;
   settings: {

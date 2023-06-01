@@ -20,6 +20,10 @@ import SidebarListSettings from "./SidebarListSettings";
 import SidebarImageSettings from "./SidebarImageSettings";
 import { Droppable } from "react-beautiful-dnd";
 import { SelectedElement } from "@/types/EmailEditorContext.types";
+import {
+  ACTIONS,
+  useUpdateEmailEditor,
+} from "@/context/EmailEditorContextProvider";
 
 type RenderSidebarContentProps = {
   activeSidebarTab: "elements" | "settings";
@@ -32,6 +36,14 @@ function RenderSidebarContent({
   selectedElement,
   settings,
 }: RenderSidebarContentProps) {
+  const updateEmailEditor = useUpdateEmailEditor();
+  function handleReturnToGlobalSettings() {
+    updateEmailEditor({
+      type: ACTIONS.CHANGE_SIDEBAR_SETTINGS_TAB_CONTENT,
+      payload: null,
+    });
+  }
+
   return (
     <>
       {activeSidebarTab === "elements" ? (
@@ -92,11 +104,21 @@ function RenderSidebarContent({
                 title="Spacer"
                 index={10}
               />
+              {provided.placeholder}
             </div>
           )}
         </Droppable>
       ) : (
         <div className="sidebar-settings-wrapper">
+          {selectedElement && (
+            <p
+              className="default-padding"
+              style={{ cursor: "pointer" }}
+              onClick={handleReturnToGlobalSettings}
+            >
+              Return to Global Settings
+            </p>
+          )}
           {(() => {
             switch (selectedElement?.element) {
               case "heading":
@@ -116,4 +138,4 @@ function RenderSidebarContent({
   );
 }
 
-export default React.memo(RenderSidebarContent);
+export default RenderSidebarContent;

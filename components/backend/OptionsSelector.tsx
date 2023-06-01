@@ -38,4 +38,4 @@ function OptionsSelector({ title, options, id }: OptionsSelectorProps) {
   );
 }
 
-export default React.memo(OptionsSelector);
+export default OptionsSelector;

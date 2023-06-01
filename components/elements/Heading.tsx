@@ -7,7 +7,7 @@ import {
   useUpdateEmailEditor,
 } from "@/context/EmailEditorContextProvider";
 
-function Heading({ id, content, settings }: HeadingElement) {
+function Heading({ id, content, settings, index }: HeadingElement) {
   let HeadingTag = `<${settings.title} 
   style="
   font-family:${settings.fontFamily};
@@ -29,7 +29,7 @@ function Heading({ id, content, settings }: HeadingElement) {
   }
 
   return (
-    <Draggable draggableId={id} index={Number(id)}>
+    <Draggable draggableId={id} index={index}>
       {(provided) => (
         <div
           ref={provided.innerRef}

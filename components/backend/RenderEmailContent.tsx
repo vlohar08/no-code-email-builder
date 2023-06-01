@@ -11,20 +11,28 @@ type RenderEmailContentProps = {
 };
 
 function RenderEmailContent({ content, settings }: RenderEmailContentProps) {
+  let index = 1;
   function renderEmail(content: any) {
-    return content.map((element: any) => {
+    return content.map((element: any, index: number) => {
       switch (element.name) {
         case "heading":
-          return <Heading {...element} />;
+          return <Heading key={element.id} {...element} index={index} />;
         case "section":
           return (
-            <Section id={element.id} settings={settings}>
+            <Section
+              key={element.id}
+              id={element.id}
+              settings={settings}
+              index={index}
+            >
               {renderEmail(element.columns)}
             </Section>
           );
         case "column":
           return (
-            <Column id={element.id}>{renderEmail(element.content)}</Column>
+            <Column key={element.id} id={element.id}>
+              {renderEmail(element.content)}
+            </Column>
           );
         default:
           return null;

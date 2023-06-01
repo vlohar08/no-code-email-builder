@@ -7,9 +7,10 @@ interface SectionProps {
   id: string;
   children: string;
   settings: GlobalSettings;
+  index: number;
 }
 
-function Section({ id, children, settings }: SectionProps) {
+function Section({ id, children, settings, index }: SectionProps) {
   let target: null | HTMLElement = null;
   function handleMouseEnter(e: React.MouseEvent<HTMLElement, MouseEvent>) {
     target = e.target as HTMLElement;
@@ -24,7 +25,7 @@ function Section({ id, children, settings }: SectionProps) {
   }
 
   return (
-    <Draggable draggableId={id} index={Number(id)}>
+    <Draggable draggableId={id} index={index}>
       {(provided) => (
         <section
           id={id}
