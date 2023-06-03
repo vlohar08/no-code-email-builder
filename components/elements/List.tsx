@@ -1,14 +1,15 @@
 "use client";
+import { ListElement } from "@/types/EmailEditorContext.types";
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { HeadingElement } from "@/types/EmailEditorContext.types";
 import {
   ACTIONS,
   useUpdateEmailEditor,
 } from "@/context/EmailEditorContextProvider";
 
-function Heading({ id, content, settings, index }: HeadingElement) {
-  const HeadingTag = `<${settings.title} 
+function List({ id, settings, content, index }: ListElement) {
+  const updateEmailEditor = useUpdateEmailEditor();
+  const ListTag = `<${settings.listType} 
   style="
   font-family:${settings.fontFamily};
   font-weight:${settings.fontWeight};
@@ -17,17 +18,15 @@ function Heading({ id, content, settings, index }: HeadingElement) {
   text-align: ${settings.textAlign};
   line-height: ${settings.lineHeight};
   letter-spacing: ${settings.letterSpacing}px;
-  ">${content}</${settings.title}>`;
-
-  const updateEmailEditor = useUpdateEmailEditor();
+  list-style-type: ${settings.listStyleType}
+  ">${content}</${settings.listType}>`;
 
   function handleClick() {
     updateEmailEditor({
       type: ACTIONS.CHANGE_SIDEBAR_SETTINGS_TAB_CONTENT,
-      payload: { element: "heading", id, settings },
+      payload: { element: "list", id, settings },
     });
   }
-
   return (
     <Draggable draggableId={id} index={index}>
       {(provided) => (
@@ -43,11 +42,11 @@ function Heading({ id, content, settings, index }: HeadingElement) {
                 ? settings.block.padding
                 : `${settings.block.padding.paddingTop}px ${settings.block.padding.paddingRight}px ${settings.block.padding.paddingBottom}px ${settings.block.padding.paddingLeft}px`,
           }}
-          dangerouslySetInnerHTML={{ __html: HeadingTag }}
+          dangerouslySetInnerHTML={{ __html: ListTag }}
         ></div>
       )}
     </Draggable>
   );
 }
 
-export default Heading;
+export default List;

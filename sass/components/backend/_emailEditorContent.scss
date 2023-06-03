@@ -2,6 +2,10 @@
 
 .email-editor-content-wrapper {
   height: 100%;
+  a,
+  iframe {
+    pointer-events: none;
+  }
   .element-hover {
     outline: 2px solid rgb(var(--primary-color));
     background-color: rgba(var(--primary-color), 0.1);

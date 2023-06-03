@@ -4,13 +4,15 @@ import {
   ACTIONS,
   useUpdateEmailEditor,
 } from "@/context/EmailEditorContextProvider";
+import { camelCase } from "lodash";
 
 type InputWithSideLabelProps = {
   id: string;
   title: string;
   state: string;
   className?: string;
-  payloadTitle: string;
+  payloadTitle?: string;
+  onChange?: (value: string) => void;
 };
 
 function InputWithSideLabel({
@@ -19,17 +21,22 @@ function InputWithSideLabel({
   state,
   className,
   payloadTitle,
+  onChange,
 }: InputWithSideLabelProps) {
   const updateEmailEditor = useUpdateEmailEditor();
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    updateEmailEditor({
-      type: ACTIONS.UPDATE_ELEMENT_SETTINGS,
-      payload: {
-        title: payloadTitle,
-        id,
-        value: e.target.value,
-      },
-    });
+    if (onChange) {
+      onChange(e.target.value);
+    } else {
+      updateEmailEditor({
+        type: ACTIONS.UPDATE_ELEMENT_SETTINGS,
+        payload: {
+          title: payloadTitle || camelCase(title),
+          id,
+          value: e.target.value,
+        },
+      });
+    }
   }
 
   return (

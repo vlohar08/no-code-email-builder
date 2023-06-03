@@ -1,22 +1,16 @@
 "use client";
 import React from "react";
-import OptionToggle from "./OptionToggle";
 import {
   ACTIONS,
   useUpdateEmailEditor,
 } from "@/context/EmailEditorContextProvider";
 
-type ImageWidthEditorProps = {
+type ElementWidthEditorProps = {
   id: string;
   state: number | "auto";
-  fullWidthOnMobile: boolean;
 };
 
-function ImageWidthEditor({
-  id,
-  state,
-  fullWidthOnMobile,
-}: ImageWidthEditorProps) {
+function ElementWidthEditor({ id, state }: ElementWidthEditorProps) {
   const updateEmailEditor = useUpdateEmailEditor();
   function handleChange(value: number | "auto" | boolean, title: string) {
     updateEmailEditor({
@@ -30,7 +24,7 @@ function ImageWidthEditor({
   }
 
   return (
-    <div className="image-width-editor-wrapper default-padding default-border">
+    <div className="element-width-editor-wrapper default-padding default-border">
       <div className="default-two-grid ">
         <p>Auto Width</p>
         <div
@@ -41,7 +35,10 @@ function ImageWidthEditor({
       </div>
       {state !== "auto" && (
         <>
-          <div className="image-width-range-slider">
+          <div
+            className="element-width-range-slider"
+            style={{ display: "flex", gap: 5, alignItems: "center" }}
+          >
             <input
               type="range"
               min={0}
@@ -51,20 +48,10 @@ function ImageWidthEditor({
             />
             <p>{state}</p>
           </div>
-          <div className="image-full-width-checkbox-wrapper">
-            <input
-              type="checkbox"
-              checked={fullWidthOnMobile}
-              onChange={(e) =>
-                handleChange(e.target.checked, "fullWidthOnMobile")
-              }
-            />
-            <p>Full width on mobile</p>
-          </div>
         </>
       )}
     </div>
   );
 }
 
-export default ImageWidthEditor;
+export default ElementWidthEditor;

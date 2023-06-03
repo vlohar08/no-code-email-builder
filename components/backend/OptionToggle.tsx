@@ -12,6 +12,7 @@ type OptionToggleProps = {
   state: boolean;
   children?: React.ReactNode;
   payloadTitle?: string;
+  onChange?: () => void;
 };
 
 function OptionToggle({
@@ -20,17 +21,22 @@ function OptionToggle({
   payloadTitle,
   state,
   children,
+  onChange,
 }: OptionToggleProps) {
   const updateEmailEditor = useUpdateEmailEditor();
   function handleChange() {
-    updateEmailEditor({
-      type: ACTIONS.UPDATE_ELEMENT_SETTINGS,
-      payload: {
-        title: payloadTitle || camelCase(title),
-        id,
-        value: !state,
-      },
-    });
+    if (onChange) {
+      onChange();
+    } else {
+      updateEmailEditor({
+        type: ACTIONS.UPDATE_ELEMENT_SETTINGS,
+        payload: {
+          title: payloadTitle || camelCase(title),
+          id,
+          value: !state,
+        },
+      });
+    }
   }
   return (
     <div className="option-switch-wrapper default-padding default-border">

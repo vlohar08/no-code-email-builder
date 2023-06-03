@@ -1,17 +1,18 @@
 import React from "react";
-import OptionsSelector from "./OptionsSelector";
-import ColorPicker from "./ColorPicker";
-import InputWithPlusMinusButtons from "./InputWithPlusMinusButtons";
-import TextAlignOptionsSelector from "./TextAlignOptionsSelector";
-import LineHeightOptionsSelector from "./LineHeightOptionsSelector";
-import BlockPaddingCustomizer from "./BlockPaddingCustomizer";
-import HideOnMobileAndDesktopButtons from "./HideOnMobileAndDesktopButtons";
+import OptionsSelector from "../backend/OptionsSelector";
+import ColorPicker from "../backend/ColorPicker";
+import InputWithPlusMinusButtons from "../backend/InputWithPlusMinusButtons";
+import TextAlignOptionsSelector from "../backend/TextAlignOptionsSelector";
+import LineHeightOptionsSelector from "../backend/LineHeightOptionsSelector";
+import BlockPaddingCustomizer from "../backend/BlockPaddingCustomizer";
+import HideOnMobileAndDesktopButtons from "../backend/HideOnMobileAndDesktopButtons";
 import { FONTS, FONT_WEIGHTS } from "@/data/options";
+import { HeadingElement } from "@/types/EmailEditorContext.types";
 // import { useEmailEditor } from "@/context/EmailEditorContextProvider";
 
 type SidebarHeadingSettingsProps = {
   id: string;
-  settings: any;
+  settings: HeadingElement["settings"];
 };
 
 function SidebarHeadingSettings({ id, settings }: SidebarHeadingSettingsProps) {
@@ -21,9 +22,24 @@ function SidebarHeadingSettings({ id, settings }: SidebarHeadingSettingsProps) {
 
   return (
     <>
-      <OptionsSelector id={id} title="Title" options={["H1", "H2", "H3"]} />
-      <OptionsSelector id={id} title="Font family" options={FONTS} />
-      <OptionsSelector id={id} title="Font weight" options={FONT_WEIGHTS} />
+      <OptionsSelector
+        id={id}
+        state={settings.title}
+        title="Title"
+        options={["H1", "H2", "H3"]}
+      />
+      <OptionsSelector
+        id={id}
+        state={settings.fontFamily}
+        title="Font family"
+        options={FONTS}
+      />
+      <OptionsSelector
+        id={id}
+        state={settings.fontWeight}
+        title="Font weight"
+        options={FONT_WEIGHTS}
+      />
       <InputWithPlusMinusButtons
         id={id}
         title="Font size"

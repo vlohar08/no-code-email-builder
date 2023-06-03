@@ -2,6 +2,7 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import { camelCase } from "lodash";
 
 type EditEmailSidebarElementProps = {
   icon: React.ReactNode;
@@ -16,7 +17,7 @@ function EditEmailSidebarElement({
 }: EditEmailSidebarElementProps) {
   return (
     <ErrorBoundary>
-      <Draggable draggableId={title.toLowerCase()} index={index}>
+      <Draggable draggableId={camelCase(title)} index={index}>
         {(provided) => (
           <div
             className="sidebar-element"

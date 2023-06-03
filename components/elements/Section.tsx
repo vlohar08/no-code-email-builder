@@ -5,7 +5,7 @@ import { Draggable } from "react-beautiful-dnd";
 
 interface SectionProps {
   id: string;
-  children: string;
+  children: React.ReactNode;
   settings: GlobalSettings;
   index: number;
 }
@@ -36,7 +36,16 @@ function Section({ id, children, settings, index }: SectionProps) {
           onMouseOver={handleMouseEnter}
           onMouseOut={handleMouseLeave}
         >
-          <div>{children}</div>
+          <div
+            style={{
+              maxWidth: settings.contentAreaWidth,
+              margin:
+                settings.contentAreaAlignment === "center" ? "0 auto" : "",
+              background: settings.contentAreaBackgroundColor,
+            }}
+          >
+            {children}
+          </div>
         </section>
       )}
     </Draggable>

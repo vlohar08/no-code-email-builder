@@ -1,0 +1,45 @@
+@use "../../abstracts/" as *;
+
+.border-editor-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  select {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    outline: none;
+  }
+  > div {
+    border: 1px solid var(--light-border-color);
+    padding: 0 10px;
+    border-radius: 5px;
+  }
+  div {
+    @include centerBy("flex");
+  }
+  .border-width-input-wrapper {
+    border-radius: 5px;
+    padding: 3px;
+    border-left: 1px solid var(--light-border-color);
+    border-right: 1px solid var(--light-border-color);
+    margin: 0 5px;
+    input {
+      width: 30px;
+      border: none;
+      font-size: 14px;
+      text-align: center;
+      outline: none;
+    }
+    svg {
+      cursor: pointer;
+    }
+  }
+  .border-width-color-wrapper {
+    input {
+      width: 25px;
+      border: none;
+    }
+  }
+}

@@ -31,7 +31,7 @@ export const ACTIONS = {
   ADD_EMAIL_ELEMENT_WITH_SECTION: "add-email-element-with-section",
   CHANGE_SIDEBAR_SETTINGS_TAB_CONTENT: "change-sidebar-settings-tab-content",
   UPDATE_ELEMENT_SETTINGS: "update-element-settings",
-  UPDATE_ELEMENT_BLOCK_SETTINGS: "update-element-block-settings",
+  UPDATE_ELEMENT_NESTED_SETTINGS: "update-element-nested-settings",
 };
 
 //Default Values
@@ -66,15 +66,20 @@ function handleEmailEditor(
         activeSidebarTab: action.payload,
       };
     case ACTIONS.ADD_EMAIL_ELEMENT_WITH_SECTION:
-      const section = cloneDeep(elements["section"]);
+      let section;
       const element = cloneDeep(
         elements[action.payload as keyof typeof elements]
       );
-      section.id = nanoid(10);
       element.id = nanoid(10);
-      section.columns[0].id = nanoid(10);
-      section.columns[0].content.push(element);
-
+      if (action.payload !== "section") {
+        section = cloneDeep(elements["section"]);
+        section.id = nanoid(10);
+        section.columns[0].id = nanoid(10);
+        section.columns[0].content.push(element);
+      }
+      if (action.payload === "section") {
+        section = element;
+      }
       return {
         ...state,
         content: [...state.content, section],
@@ -103,15 +108,14 @@ function handleEmailEditor(
         });
       });
       return newState;
-    case ACTIONS.UPDATE_ELEMENT_BLOCK_SETTINGS:
+    case ACTIONS.UPDATE_ELEMENT_NESTED_SETTINGS:
       newState = cloneDeep(state);
+      const { titles, value } = action.payload;
       newState.content.find((section: any) => {
         section.columns.find((column: any) => {
           column.content.find((element: any) => {
-            if (element.id === action.payload.id) {
-              element.settings.block[action.payload.title] =
-                action.payload.value;
-            }
+            console.log(element.settings[titles[0]][titles[1]]);
+            element.settings[titles[0]][titles[1]] = value;
           });
         });
       });

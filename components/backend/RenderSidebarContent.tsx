@@ -13,17 +13,22 @@ import {
   IconTextPlus,
   IconVideoPlus,
 } from "@tabler/icons-react";
-import SidebarGlobalSettings from "./SidebarGlobalSettings";
-import SidebarHeadingSettings from "./SidebarHeadingSettings";
-import SidebarTextBlockSettings from "./SidebarTextBlockSettings";
-import SidebarListSettings from "./SidebarListSettings";
-import SidebarImageSettings from "./SidebarImageSettings";
+import SidebarGlobalSettings from "../settings/SidebarGlobalSettings";
+import SidebarHeadingSettings from "../settings/SidebarHeadingSettings";
+import SidebarTextBlockSettings from "../settings/SidebarTextBlockSettings";
+import SidebarListSettings from "../settings/SidebarListSettings";
+import SidebarImageSettings from "../settings/SidebarImageSettings";
 import { Droppable } from "react-beautiful-dnd";
 import { SelectedElement } from "@/types/EmailEditorContext.types";
 import {
   ACTIONS,
   useUpdateEmailEditor,
 } from "@/context/EmailEditorContextProvider";
+import SidebarVideoSettings from "../settings/SidebarVideoSettings";
+import SidebarSocialSettings from "../settings/SidebarSocialSettings";
+import SidebarButtonSettings from "../settings/SidebarButtonSettings";
+import SidebarDividerSettings from "../settings/SidebarDividerSettings";
+import SidebarSpacerSettings from "../settings/SidebarSpacerSettings";
 
 type RenderSidebarContentProps = {
   activeSidebarTab: "elements" | "settings";
@@ -124,6 +129,62 @@ function RenderSidebarContent({
               case "heading":
                 return (
                   <SidebarHeadingSettings
+                    id={selectedElement.id}
+                    settings={selectedElement.settings}
+                  />
+                );
+              case "image":
+                return (
+                  <SidebarImageSettings
+                    id={selectedElement.id}
+                    settings={selectedElement.settings}
+                  />
+                );
+              case "video":
+                return (
+                  <SidebarVideoSettings
+                    id={selectedElement.id}
+                    settings={selectedElement.settings}
+                  />
+                );
+              case "textBlock":
+                return (
+                  <SidebarTextBlockSettings
+                    id={selectedElement.id}
+                    settings={selectedElement.settings}
+                  />
+                );
+              case "list":
+                return (
+                  <SidebarListSettings
+                    id={selectedElement.id}
+                    settings={selectedElement.settings}
+                  />
+                );
+              case "social":
+                return (
+                  <SidebarSocialSettings
+                    id={selectedElement.id}
+                    settings={selectedElement.settings}
+                  />
+                );
+              case "button":
+                return (
+                  <SidebarButtonSettings
+                    id={selectedElement.id}
+                    settings={selectedElement.settings}
+                  />
+                );
+              case "divider":
+                return (
+                  <SidebarDividerSettings
+                    id={selectedElement.id}
+                    settings={selectedElement.settings}
+                  />
+                );
+              case "spacer":
+                return (
+                  <SidebarSpacerSettings
                     id={selectedElement.id}
                     settings={selectedElement.settings}
                   />

@@ -1,33 +1,20 @@
-"use client";
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { HeadingElement } from "@/types/EmailEditorContext.types";
+import { TextBlockElement } from "@/types/EmailEditorContext.types";
 import {
   ACTIONS,
   useUpdateEmailEditor,
 } from "@/context/EmailEditorContextProvider";
 
-function Heading({ id, content, settings, index }: HeadingElement) {
-  const HeadingTag = `<${settings.title} 
-  style="
-  font-family:${settings.fontFamily};
-  font-weight:${settings.fontWeight};
-  font-size: ${settings.fontSize}px;
-  color:${settings.textColor};
-  text-align: ${settings.textAlign};
-  line-height: ${settings.lineHeight};
-  letter-spacing: ${settings.letterSpacing}px;
-  ">${content}</${settings.title}>`;
-
+function TextBlock({ id, settings, content, index }: TextBlockElement) {
   const updateEmailEditor = useUpdateEmailEditor();
 
   function handleClick() {
     updateEmailEditor({
       type: ACTIONS.CHANGE_SIDEBAR_SETTINGS_TAB_CONTENT,
-      payload: { element: "heading", id, settings },
+      payload: { element: "textBlock", id, settings },
     });
   }
-
   return (
     <Draggable draggableId={id} index={index}>
       {(provided) => (
@@ -43,11 +30,24 @@ function Heading({ id, content, settings, index }: HeadingElement) {
                 ? settings.block.padding
                 : `${settings.block.padding.paddingTop}px ${settings.block.padding.paddingRight}px ${settings.block.padding.paddingBottom}px ${settings.block.padding.paddingLeft}px`,
           }}
-          dangerouslySetInnerHTML={{ __html: HeadingTag }}
-        ></div>
+        >
+          <p
+            style={{
+              fontFamily: settings.fontFamily,
+              fontWeight: settings.fontWeight,
+              fontSize: settings.fontSize,
+              color: settings.textColor,
+              textAlign: settings.textAlign,
+              lineHeight: settings.lineHeight,
+              letterSpacing: settings.letterSpacing,
+            }}
+          >
+            {content}
+          </p>
+        </div>
       )}
     </Draggable>
   );
 }
 
-export default Heading;
+export default TextBlock;

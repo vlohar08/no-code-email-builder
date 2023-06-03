@@ -13,7 +13,7 @@ class ErrorBoundary extends React.Component {
     // It will catch error in any component below. We can also log the error to an error reporting service.
   }
   render() {
-    if (this.state.hasError) {
+    if (this.state?.hasError) {
       return <div>Something is wrong.</div>;
     }
     return this.props.children;

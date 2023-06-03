@@ -1,7 +1,6 @@
 "use client";
 import { useEmailEditor } from "@/context/EmailEditorContextProvider";
 import React from "react";
-import EmptyColumn from "./EmptyColumn";
 import { Droppable } from "react-beautiful-dnd";
 import RenderEmailContent from "./RenderEmailContent";
 import ErrorBoundary from "../ErrorBoundary";
@@ -33,17 +32,8 @@ function EmailContent() {
                   : "",
             }}
           >
-            <div
-              className="email-editor-content-wrapper"
-              style={{
-                maxWidth: settings.contentAreaWidth,
-                backgroundColor: settings.contentAreaBackgroundColor,
-                margin:
-                  settings.contentAreaAlignment === "center" ? "0 auto" : "",
-              }}
-            >
+            <div className="email-editor-content-wrapper">
               <RenderEmailContent settings={settings} content={content} />
-              <EmptyColumn />
             </div>
           </div>
         )}

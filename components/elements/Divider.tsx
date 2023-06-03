@@ -1,33 +1,19 @@
-"use client";
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { HeadingElement } from "@/types/EmailEditorContext.types";
 import {
   ACTIONS,
   useUpdateEmailEditor,
 } from "@/context/EmailEditorContextProvider";
+import { DividerElement } from "@/types/EmailEditorContext.types";
 
-function Heading({ id, content, settings, index }: HeadingElement) {
-  const HeadingTag = `<${settings.title} 
-  style="
-  font-family:${settings.fontFamily};
-  font-weight:${settings.fontWeight};
-  font-size: ${settings.fontSize}px;
-  color:${settings.textColor};
-  text-align: ${settings.textAlign};
-  line-height: ${settings.lineHeight};
-  letter-spacing: ${settings.letterSpacing}px;
-  ">${content}</${settings.title}>`;
-
+function Divider({ id, settings, index }: DividerElement) {
   const updateEmailEditor = useUpdateEmailEditor();
-
   function handleClick() {
     updateEmailEditor({
       type: ACTIONS.CHANGE_SIDEBAR_SETTINGS_TAB_CONTENT,
-      payload: { element: "heading", id, settings },
+      payload: { element: "divider", id, settings },
     });
   }
-
   return (
     <Draggable draggableId={id} index={index}>
       {(provided) => (
@@ -38,16 +24,28 @@ function Heading({ id, content, settings, index }: HeadingElement) {
           onClick={handleClick}
           className={`content-element hide-on-${settings.block?.hideOn}`}
           style={{
+            display: "flex",
+            justifyContent: settings.align,
             padding:
               typeof settings.block.padding === "number"
                 ? settings.block.padding
                 : `${settings.block.padding.paddingTop}px ${settings.block.padding.paddingRight}px ${settings.block.padding.paddingBottom}px ${settings.block.padding.paddingLeft}px`,
           }}
-          dangerouslySetInnerHTML={{ __html: HeadingTag }}
-        ></div>
+        >
+          <div
+            style={{
+              width:
+                typeof settings.width === "number"
+                  ? settings.width + "%"
+                  : settings.width,
+              height: "1px",
+              border: `${settings.border.borderWidth}px ${settings.border.borderType} ${settings.border.borderColor}`,
+            }}
+          ></div>
+        </div>
       )}
     </Draggable>
   );
 }
 
-export default Heading;
+export default Divider;

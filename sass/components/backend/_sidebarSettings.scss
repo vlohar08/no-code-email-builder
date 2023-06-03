@@ -49,9 +49,9 @@
   }
   .svg-option {
     svg {
+      color: grey;
       vertical-align: middle;
       margin-left: 10px;
-      color: grey;
       &[data-active="true"] {
         color: black;
       }

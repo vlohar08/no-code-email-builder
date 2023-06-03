@@ -1,9 +1,9 @@
 import React from "react";
-import RangeSlider from "./RangeSlider";
-import ColorPicker from "./ColorPicker";
-import OptionsSwatches from "./OptionsSwatches";
-import OptionToggle from "./OptionToggle";
-import BackgroundImageEditor from "./BackgroundImageEditor";
+import RangeSlider from "../backend/RangeSlider";
+import ColorPicker from "../backend/ColorPicker";
+import OptionsSwatches from "../backend/OptionsSwatches";
+import OptionToggle from "../backend/OptionToggle";
+import BackgroundImageEditor from "../backend/BackgroundImageEditor";
 import {
   useEmailEditor,
   useUpdateEmailEditor,

@@ -5,9 +5,10 @@ import {
   ACTIONS,
   useUpdateEmailEditor,
 } from "@/context/EmailEditorContextProvider";
+import { HideOn } from "@/types/EmailEditorContext.types";
 type HideOnMobileAndDesktopButtonsProps = {
   id: string;
-  state: "mobile" | "desktop";
+  state: HideOn;
 };
 
 function HideOnMobileAndDesktopButtons({
@@ -21,9 +22,9 @@ function HideOnMobileAndDesktopButtons({
       hideOn = value;
     }
     updateEmailEditor({
-      type: ACTIONS.UPDATE_ELEMENT_BLOCK_SETTINGS,
+      type: ACTIONS.UPDATE_ELEMENT_NESTED_SETTINGS,
       payload: {
-        title: "hideOn",
+        titles: ["block", "hideOn"],
         id,
         value: hideOn,
       },

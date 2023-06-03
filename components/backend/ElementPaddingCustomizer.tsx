@@ -5,12 +5,15 @@ import { useUpdateEmailEditor } from "@/context/EmailEditorContextProvider";
 import { ACTIONS } from "@/context/EmailEditorContextProvider";
 import { Padding } from "@/types/EmailEditorContext.types";
 
-type BlockPaddingCustomizerProps = {
+type ElementPaddingCustomizerProps = {
   id: string;
-  state: number | Padding;
+  state: number | Padding | undefined;
 };
 
-function BlockPaddingCustomizer({ id, state }: BlockPaddingCustomizerProps) {
+function ElementPaddingCustomizer({
+  id,
+  state,
+}: ElementPaddingCustomizerProps) {
   const [isMoreOptionsActive, setIsMoreOptionsActive] = useState(false);
   const updateEmailEditor = useUpdateEmailEditor();
 
@@ -31,10 +34,11 @@ function BlockPaddingCustomizer({ id, state }: BlockPaddingCustomizerProps) {
     if (typeof state === "number") {
       padding = type === "increment" ? state + 1 : state - 1;
     }
+
     updateEmailEditor({
-      type: ACTIONS.UPDATE_ELEMENT_NESTED_SETTINGS,
+      type: ACTIONS.UPDATE_ELEMENT_SETTINGS,
       payload: {
-        titles: ["block", "padding"],
+        title: "padding",
         id,
         value: padding,
       },
@@ -44,9 +48,9 @@ function BlockPaddingCustomizer({ id, state }: BlockPaddingCustomizerProps) {
   function handleToggle() {
     setIsMoreOptionsActive((prevValue) => !prevValue);
     updateEmailEditor({
-      type: ACTIONS.UPDATE_ELEMENT_NESTED_SETTINGS,
+      type: ACTIONS.UPDATE_ELEMENT_SETTINGS,
       payload: {
-        titles: ["block", "padding"],
+        title: "padding",
         id,
         value: !isMoreOptionsActive
           ? {
@@ -125,4 +129,4 @@ function BlockPaddingCustomizer({ id, state }: BlockPaddingCustomizerProps) {
   );
 }
 
-export default BlockPaddingCustomizer;
+export default ElementPaddingCustomizer;
