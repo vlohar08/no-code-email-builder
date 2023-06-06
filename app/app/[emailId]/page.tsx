@@ -24,11 +24,13 @@ function EditEmail() {
     const source = result.source?.droppableId;
     const draggedElement = result?.draggableId;
     const destination = result.destination?.droppableId;
+    console.log(result);
+
     //If element is dragged in the content area
     if (destination === "email-content") {
       updateEmailEditor({
         type: ACTIONS.ADD_ELEMENT,
-        payload: draggedElement,
+        payload: result,
       });
     }
     //If element is dragged in any column of a section

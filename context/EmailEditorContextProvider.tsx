@@ -57,42 +57,43 @@ function handleEmailEditor(
   state: EmailEditorContextTypes,
   action: { type: string; payload: any }
 ) {
-  let newState: any;
   switch (action.type) {
-    case ACTIONS.CHANGE_SIDEBAR_TAB:
+    case ACTIONS.CHANGE_SIDEBAR_TAB: {
       return {
         ...state,
         activeSidebarTab: action.payload,
       };
-    case ACTIONS.ADD_ELEMENT:
-      let section;
-      const element = cloneDeep(
-        elements[action.payload as keyof typeof elements]
-      );
-      element.id = nanoid(10);
-      if (action.payload !== "section") {
-        section = cloneDeep(elements["section"]);
+    }
+    case ACTIONS.ADD_ELEMENT: {
+      const { destination, draggableId } = action.payload;
+      const newState = cloneDeep(state);
+      const element = cloneDeep(elements[draggableId as keyof typeof elements]);
+      //Add a element in section if the element was dropped outside of a section
+      if (draggableId !== "section") {
+        element.id = nanoid(10);
+        const section = cloneDeep(elements["section"]);
         section.id = "section-" + nanoid(10);
         section.columns[0].id = "column-" + nanoid(10);
         section.columns[0].content.push(element);
+        newState.content.splice(destination.index, 0, section);
       }
-      if (action.payload === "section" && element.name === "section") {
+      //Add a section element
+      if (draggableId === "section" && element.name === "section") {
         element.id = "section-" + nanoid(10);
         element.columns[0].id = "column-" + nanoid(10);
-        section = element;
+        newState.content.splice(destination.index, 0, element);
       }
-      return {
-        ...state,
-        content: [...state.content, section],
-      };
-    case ACTIONS.CHANGE_SIDEBAR_SETTINGS_TAB_CONTENT:
+      return newState;
+    }
+    case ACTIONS.CHANGE_SIDEBAR_SETTINGS_TAB_CONTENT: {
       return {
         ...state,
         activeSidebarTab: "settings",
         selectedElement: action.payload,
       };
-    case ACTIONS.UPDATE_ELEMENT_SETTINGS:
-      newState = cloneDeep(state);
+    }
+    case ACTIONS.UPDATE_ELEMENT_SETTINGS: {
+      const newState = cloneDeep(state);
       if (action.payload.id === "global") {
         newState.settings[action.payload.title] = action.payload.value;
         return newState;
@@ -117,8 +118,9 @@ function handleEmailEditor(
         });
       });
       return newState;
-    case ACTIONS.UPDATE_ELEMENT_NESTED_SETTINGS:
-      newState = cloneDeep(state);
+    }
+    case ACTIONS.UPDATE_ELEMENT_NESTED_SETTINGS: {
+      const newState = cloneDeep(state);
       const { titles, value, id } = action.payload;
 
       if (action.payload.id.includes("section")) {
@@ -140,11 +142,12 @@ function handleEmailEditor(
         });
       });
       return newState;
-    case ACTIONS.ADD_ELEMENT_IN_COLUMN:
+    }
+    case ACTIONS.ADD_ELEMENT_IN_COLUMN: {
       const { source, destination, draggableId } = action.payload;
 
       if (draggableId === "section") return state;
-      newState = cloneDeep(state);
+      const newState = cloneDeep(state);
       newState.content.find((section: any) => {
         section.columns.find((column: any) => {
           if (column.id === destination.droppableId) {
@@ -159,8 +162,10 @@ function handleEmailEditor(
         });
       });
       return newState;
-    default:
+    }
+    default: {
       return state;
+    }
   }
 }
 
