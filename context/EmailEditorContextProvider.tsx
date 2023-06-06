@@ -1,6 +1,9 @@
 "use client";
 import elements from "@/data/elements";
-import { EmailEditorContextTypes } from "@/types/EmailEditorContext.types";
+import {
+  EmailEditorContextTypes,
+  GlobalSettings,
+} from "@/types/EmailEditorContext.types";
 import { nanoid } from "nanoid";
 import React, { Dispatch, createContext, useContext, useReducer } from "react";
 import { SectionElement } from "@/types/EmailEditorContext.types";
@@ -96,7 +99,9 @@ function handleEmailEditor(
     case ACTIONS.UPDATE_ELEMENT_SETTINGS: {
       const newState = cloneDeep(state);
       if (action.payload.id === "global") {
-        newState.settings[action.payload.title] = action.payload.value;
+        const title: keyof GlobalSettings = action.payload.title;
+        // @ts-ignore
+        newState.settings[title] = action.payload.value;
         return newState;
       }
 
@@ -195,6 +200,7 @@ function EmailEditorContextProvider({
 }: {
   children: React.ReactNode;
 }) {
+  // @ts-ignore
   const [emailEditor, dispatch] = useReducer(handleEmailEditor, defaultValues);
   return (
     <EmailEditorContext.Provider value={emailEditor}>

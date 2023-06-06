@@ -37,7 +37,10 @@ function EmailContent() {
                   className="column-element"
                   style={{
                     maxWidth: settings.contentAreaWidth,
-                    margin: "0 auto",
+                    margin:
+                      settings.contentAreaAlignment === "center"
+                        ? "0 auto"
+                        : "",
                   }}
                 >
                   <EmptyColumn />
