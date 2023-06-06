@@ -27,7 +27,7 @@ function EditEmail() {
     //If element is dragged in the content area
     if (destination === "email-content") {
       updateEmailEditor({
-        type: ACTIONS.ADD_EMAIL_ELEMENT_WITH_SECTION,
+        type: ACTIONS.ADD_ELEMENT,
         payload: draggedElement,
       });
     }

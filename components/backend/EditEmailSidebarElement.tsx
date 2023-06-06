@@ -17,19 +17,21 @@ function EditEmailSidebarElement({
 }: EditEmailSidebarElementProps) {
   return (
     <ErrorBoundary>
-      <Draggable draggableId={camelCase(title)} index={index}>
-        {(provided) => (
-          <div
-            className="sidebar-element"
-            ref={provided.innerRef}
-            {...provided.dragHandleProps}
-            {...provided.draggableProps}
-          >
-            {icon}
-            <h5>{title}</h5>
-          </div>
-        )}
-      </Draggable>
+      <div>
+        <Draggable draggableId={camelCase(title)} index={index}>
+          {(provided) => (
+            <div
+              className="sidebar-element"
+              ref={provided.innerRef}
+              {...provided.dragHandleProps}
+              {...provided.draggableProps}
+            >
+              {icon}
+              <h5>{title}</h5>
+            </div>
+          )}
+        </Draggable>
+      </div>
     </ErrorBoundary>
   );
 }

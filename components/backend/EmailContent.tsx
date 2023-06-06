@@ -16,20 +16,15 @@ function EmailContent() {
             ref={provided.innerRef}
             className="email-editor"
             style={{
-              backgroundColor: settings.backgroundColor,
-              backgroundImage: settings.showBackgroundImage
-                ? `url(${settings.backgroundImageUrl})`
-                : "",
-              backgroundRepeat:
-                settings.showBackgroundImage &&
-                settings.shouldBackgroundImageRepeat
+              ...(settings.showBackgroundImage && {
+                backgroundImage: `url(${settings.backgroundImageUrl})`,
+                backgroundRepeat: settings.shouldBackgroundImageRepeat
                   ? "repeat"
                   : "no-repeat",
-              backgroundPosition:
-                settings.showBackgroundImage &&
-                settings.isBackgroundImageCentered
+                backgroundPosition: settings.isBackgroundImageCentered
                   ? "center"
                   : "",
+              }),
             }}
           >
             <div className="email-editor-content-wrapper">

@@ -13,9 +13,11 @@ class ErrorBoundary extends React.Component {
     // It will catch error in any component below. We can also log the error to an error reporting service.
   }
   render() {
+    // @ts-ignore
     if (this.state?.hasError) {
       return <div>Something is wrong.</div>;
     }
+    // @ts-ignore
     return this.props.children;
   }
 }

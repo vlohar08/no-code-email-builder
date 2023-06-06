@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
-import RenderSidebarContent from "./RenderSidebarContent";
 import {
   ACTIONS,
   useEmailEditor,
   useUpdateEmailEditor,
 } from "@/context/EmailEditorContextProvider";
+import SidebarElements from "./SidebarElements";
+import SidebarSettings from "./SidebarSettings";
 
 function EditEmailSidebar() {
   const { activeSidebarTab, selectedElement } = useEmailEditor();
@@ -38,10 +39,12 @@ function EditEmailSidebar() {
             Settings
           </div>
         </div>
-        <RenderSidebarContent
-          activeSidebarTab={activeSidebarTab}
-          selectedElement={selectedElement}
-        />
+
+        {activeSidebarTab === "elements" ? (
+          <SidebarElements />
+        ) : (
+          <SidebarSettings selectedElement={selectedElement} />
+        )}
       </aside>
     </>
   );

@@ -28,7 +28,7 @@ export function useUpdateEmailEditor() {
 //Reducer Actions
 export const ACTIONS = {
   CHANGE_SIDEBAR_TAB: "change-sidebar-tab",
-  ADD_EMAIL_ELEMENT_WITH_SECTION: "add-email-element-with-section",
+  ADD_ELEMENT: "add-element",
   CHANGE_SIDEBAR_SETTINGS_TAB_CONTENT: "change-sidebar-settings-tab-content",
   UPDATE_ELEMENT_SETTINGS: "update-element-settings",
   UPDATE_ELEMENT_NESTED_SETTINGS: "update-element-nested-settings",
@@ -64,7 +64,7 @@ function handleEmailEditor(
         ...state,
         activeSidebarTab: action.payload,
       };
-    case ACTIONS.ADD_EMAIL_ELEMENT_WITH_SECTION:
+    case ACTIONS.ADD_ELEMENT:
       let section;
       const element = cloneDeep(
         elements[action.payload as keyof typeof elements]
