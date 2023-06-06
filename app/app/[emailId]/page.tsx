@@ -24,14 +24,19 @@ function EditEmail() {
     const source = result.source?.droppableId;
     const draggedElement = result?.draggableId;
     const destination = result.destination?.droppableId;
-
+    //If element is dragged in the content area
     if (destination === "email-content") {
       updateEmailEditor({
         type: ACTIONS.ADD_EMAIL_ELEMENT_WITH_SECTION,
         payload: draggedElement,
       });
-    } else {
-      return;
+    }
+    //If element is dragged in any column of a section
+    else if (destination?.includes("column")) {
+      updateEmailEditor({
+        type: ACTIONS.ADD_ELEMENT_IN_COLUMN,
+        payload: result,
+      });
     }
   }
 
