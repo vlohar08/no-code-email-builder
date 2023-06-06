@@ -3,6 +3,7 @@ import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { DividerElement } from "@/types/EmailEditorContext.types";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import ElementsHoverOverlay from "../ElementsHoverOverlay";
 
 interface DividerProps extends DividerElement {
   onClick: (element: any) => void;
@@ -38,6 +39,7 @@ function Divider({ id, settings, index, onClick }: DividerProps) {
                 border: `${settings.border.borderWidth}px ${settings.border.borderType} ${settings.border.borderColor}`,
               }}
             ></div>
+            <ElementsHoverOverlay provided={provided} id={id} />
           </div>
         )}
       </Draggable>

@@ -3,6 +3,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import { ImageElement } from "@/types/EmailEditorContext.types";
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
+import ElementsHoverOverlay from "../ElementsHoverOverlay";
 
 interface ImageProps extends ImageElement {
   onClick: (element: any) => void;
@@ -26,6 +27,7 @@ function Image({ id, settings, index, onClick }: ImageProps) {
                   : `${settings.block.padding.paddingTop}px ${settings.block.padding.paddingRight}px ${settings.block.padding.paddingBottom}px ${settings.block.padding.paddingLeft}px`,
             }}
           >
+            <ElementsHoverOverlay provided={provided} id={id} />
             <a href={settings.link}>
               <img
                 style={{

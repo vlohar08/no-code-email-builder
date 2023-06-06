@@ -16,6 +16,7 @@ function EmailContent() {
             ref={provided.innerRef}
             className="email-editor"
             style={{
+              backgroundColor: settings.backgroundColor,
               ...(settings.showBackgroundImage && {
                 backgroundImage: `url(${settings.backgroundImageUrl})`,
                 backgroundRepeat: settings.shouldBackgroundImageRepeat

@@ -24,7 +24,6 @@ function EditEmail() {
     const source = result.source?.droppableId;
     const draggedElement = result?.draggableId;
     const destination = result.destination?.droppableId;
-    console.log(result);
 
     //If element is dragged in the content area
     if (destination === "email-content") {

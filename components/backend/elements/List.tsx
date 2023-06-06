@@ -3,6 +3,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import { ListElement } from "@/types/EmailEditorContext.types";
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
+import ElementsHoverOverlay from "../ElementsHoverOverlay";
 
 interface ListProps extends ListElement {
   onClick: (element: any) => void;
@@ -37,8 +38,10 @@ function List({ id, settings, index, onClick }: ListProps) {
                   ? settings.block.padding
                   : `${settings.block.padding.paddingTop}px ${settings.block.padding.paddingRight}px ${settings.block.padding.paddingBottom}px ${settings.block.padding.paddingLeft}px`,
             }}
-            dangerouslySetInnerHTML={{ __html: ListTag }}
-          ></div>
+          >
+            <div dangerouslySetInnerHTML={{ __html: ListTag }}></div>
+            <ElementsHoverOverlay provided={provided} id={id} />
+          </div>
         )}
       </Draggable>
     </ErrorBoundary>

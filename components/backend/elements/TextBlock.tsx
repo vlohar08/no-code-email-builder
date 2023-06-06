@@ -2,6 +2,7 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { TextBlockElement } from "@/types/EmailEditorContext.types";
+import ElementsHoverOverlay from "../ElementsHoverOverlay";
 
 interface TextBlockProps extends TextBlockElement {
   onClick: (element: any) => void;
@@ -36,6 +37,7 @@ function TextBlock({ id, settings, index, onClick }: TextBlockProps) {
             }}
             dangerouslySetInnerHTML={{ __html: settings.content }}
           />
+          <ElementsHoverOverlay provided={provided} id={id} />
         </div>
       )}
     </Draggable>

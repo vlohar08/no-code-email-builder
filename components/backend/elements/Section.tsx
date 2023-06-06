@@ -6,6 +6,7 @@ import {
 } from "@/types/EmailEditorContext.types";
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
+import ElementsHoverOverlay from "../ElementsHoverOverlay";
 
 interface SectionProps {
   id: string;
@@ -24,32 +25,17 @@ function Section({
   index,
   onClick,
 }: SectionProps) {
-  let target: null | HTMLElement = null;
-  function handleMouseEnter(e: React.MouseEvent<HTMLElement, MouseEvent>) {
-    target = e.target as HTMLElement;
-    if (target?.nodeName === "SECTION") {
-      target.classList.add("element-hover");
-    }
-  }
-  function handleMouseLeave(e: React.MouseEvent<HTMLElement, MouseEvent>) {
-    if (target?.nodeName === "SECTION") {
-      target.classList.remove("element-hover");
-    }
-  }
-
   return (
     <ErrorBoundary>
       <Draggable draggableId={id} index={index} isDragDisabled>
         {(provided) => (
           <section
             id={id}
+            className="section-element"
+            onClick={onClick}
+            ref={provided.innerRef}
             {...provided.dragHandleProps}
             {...provided.draggableProps}
-            ref={provided.innerRef}
-            className="section-element"
-            onMouseOver={handleMouseEnter}
-            onMouseOut={handleMouseLeave}
-            onClick={onClick}
           >
             <div
               style={{
@@ -73,6 +59,7 @@ function Section({
             >
               {children}
             </div>
+            <ElementsHoverOverlay provided={provided} id={id} />
           </section>
         )}
       </Draggable>

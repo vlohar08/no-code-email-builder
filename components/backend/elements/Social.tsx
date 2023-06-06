@@ -9,6 +9,7 @@ import {
   IconBrandTwitter,
 } from "@tabler/icons-react";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import ElementsHoverOverlay from "../ElementsHoverOverlay";
 
 interface SocialProps extends SocialElement {
   onClick: (element: any) => void;
@@ -77,6 +78,7 @@ function Social({ id, settings, index, onClick }: SocialProps) {
                 />
               </a>
             )}
+            <ElementsHoverOverlay provided={provided} id={id} />
           </div>
         )}
       </Draggable>

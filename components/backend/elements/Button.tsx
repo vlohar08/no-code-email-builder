@@ -3,6 +3,7 @@ import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { ButtonElement } from "@/types/EmailEditorContext.types";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import ElementsHoverOverlay from "../ElementsHoverOverlay";
 
 interface ButtonProps extends ButtonElement {
   onClick: (element: any) => void;
@@ -60,6 +61,7 @@ function Button({ id, index, settings, onClick }: ButtonProps) {
                 {settings.text}
               </button>
             </a>
+            <ElementsHoverOverlay provided={provided} id={id} />
           </div>
         )}
       </Draggable>

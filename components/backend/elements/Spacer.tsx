@@ -3,6 +3,7 @@ import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { SpacerElement } from "@/types/EmailEditorContext.types";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import ElementsHoverOverlay from "../ElementsHoverOverlay";
 
 interface SpacerProps extends SpacerElement {
   onClick: (element: any) => void;
@@ -31,6 +32,7 @@ function Spacer({ id, settings, index, onClick }: SpacerProps) {
                 height: settings.height,
               }}
             ></div>
+            <ElementsHoverOverlay provided={provided} id={id} />
           </div>
         )}
       </Draggable>

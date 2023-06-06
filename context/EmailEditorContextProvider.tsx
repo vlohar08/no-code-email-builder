@@ -33,6 +33,7 @@ export const ACTIONS = {
   UPDATE_ELEMENT_SETTINGS: "update-element-settings",
   UPDATE_ELEMENT_NESTED_SETTINGS: "update-element-nested-settings",
   ADD_ELEMENT_IN_COLUMN: "add-element-in-column",
+  DELETE_ELEMENT: "delete-element",
 };
 
 //Default Values
@@ -161,6 +162,26 @@ function handleEmailEditor(
           }
         });
       });
+      return newState;
+    }
+    case ACTIONS.DELETE_ELEMENT: {
+      const newState = cloneDeep(state);
+      const id = action.payload;
+      if (id.includes("section")) {
+        newState.content.find((section: any) => {
+          newState.content = newState.content.filter(
+            (section: any) => section.id !== id
+          );
+        });
+      } else {
+        newState.content.find((section: any) => {
+          section.columns.find((column: any) => {
+            column.content = column.content.filter(
+              (element: any) => element.id !== id
+            );
+          });
+        });
+      }
       return newState;
     }
     default: {

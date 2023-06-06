@@ -6,23 +6,17 @@
   iframe {
     pointer-events: none;
   }
-  .element-hover {
-    outline: 2px solid rgb(var(--primary-color));
-    background-color: rgba(var(--primary-color), 0.1);
-    cursor: pointer;
-  }
   .section-element {
+    position: relative;
     width: 100%;
+    z-index: 1;
   }
   .column-element {
-    padding: 30px;
+    padding: 10px;
   }
   .content-element {
-    &:hover {
-      outline: 2px solid rgb(var(--primary-color));
-      background-color: rgba(var(--primary-color), 0.1);
-      cursor: pointer;
-    }
+    position: relative;
+    z-index: 3;
   }
   .hide-on-desktop {
   }

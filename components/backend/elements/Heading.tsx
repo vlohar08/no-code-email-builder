@@ -3,6 +3,7 @@ import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { HeadingElement } from "@/types/EmailEditorContext.types";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import ElementsHoverOverlay from "../ElementsHoverOverlay";
 
 interface HeadingProps extends HeadingElement {
   onClick: (element: any) => void;
@@ -26,18 +27,20 @@ function Heading({ id, settings, index, onClick }: HeadingProps) {
         {(provided) => (
           <div
             ref={provided.innerRef}
-            {...provided.dragHandleProps}
-            {...provided.draggableProps}
             onClick={onClick}
             className={`content-element hide-on-${settings.block?.hideOn}`}
+            {...provided.dragHandleProps}
+            {...provided.draggableProps}
             style={{
               padding:
                 typeof settings.block.padding === "number"
                   ? settings.block.padding
                   : `${settings.block.padding.paddingTop}px ${settings.block.padding.paddingRight}px ${settings.block.padding.paddingBottom}px ${settings.block.padding.paddingLeft}px`,
             }}
-            dangerouslySetInnerHTML={{ __html: HeadingTag }}
-          ></div>
+          >
+            <div dangerouslySetInnerHTML={{ __html: HeadingTag }}></div>
+            <ElementsHoverOverlay provided={provided} id={id} />
+          </div>
         )}
       </Draggable>
     </ErrorBoundary>
