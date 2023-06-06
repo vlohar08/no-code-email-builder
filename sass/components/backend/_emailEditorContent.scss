@@ -6,6 +6,9 @@
   iframe {
     pointer-events: none;
   }
+  a {
+    color: inherit;
+  }
   .section-element {
     position: relative;
     width: 100%;

@@ -4,6 +4,7 @@ import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import RenderEmailContent from "./RenderEmailContent";
 import ErrorBoundary from "../ErrorBoundary";
+import EmptyColumn from "./EmptyColumn";
 
 function EmailContent() {
   const { settings, content } = useEmailEditor();
@@ -29,7 +30,19 @@ function EmailContent() {
             }}
           >
             <div className="email-editor-content-wrapper">
-              <RenderEmailContent settings={settings} content={content} />
+              {content.length ? (
+                <RenderEmailContent settings={settings} content={content} />
+              ) : (
+                <div
+                  className="column-element"
+                  style={{
+                    maxWidth: settings.contentAreaWidth,
+                    margin: "0 auto",
+                  }}
+                >
+                  <EmptyColumn />
+                </div>
+              )}
             </div>
           </div>
         )}
