@@ -1,3 +1,4 @@
+"use client";
 import { account } from "@/appwrite/client_init";
 import { Models } from "appwrite";
 import React, {
@@ -9,12 +10,13 @@ import React, {
   Dispatch,
 } from "react";
 
-const SessionContext = createContext<Models.User<Models.Preferences> | null>(
-  null
+const SessionContext = createContext<Session>({
+  session: null,
+  isLoading: true,
+});
+const UpdateSessionContext = createContext<Dispatch<SetStateAction<Session>>>(
+  () => null
 );
-const UpdateSessionContext = createContext<
-  Dispatch<SetStateAction<Models.User<Models.Preferences> | null>>
->(() => null);
 
 export function useSession() {
   return useContext(SessionContext);
@@ -24,15 +26,24 @@ export function useUpdateSession() {
   return useContext(UpdateSessionContext);
 }
 
+type Session = {
+  session: Models.User<Models.Preferences> | null;
+  isLoading: boolean;
+};
+
 function SessionProvider({ children }: { children: React.ReactNode }) {
-  const [session, setSession] =
-    useState<Models.User<Models.Preferences> | null>(null);
+  const [session, setSession] = useState<Session>({
+    session: null,
+    isLoading: true,
+  });
 
   useEffect(() => {
     account
       .get()
-      .then((res) => setSession(res))
-      .catch((err) => console.error(err));
+      .then((session) => setSession({ session, isLoading: false }))
+      .catch((err) => {
+        setSession({ session: null, isLoading: false });
+      });
   }, []);
 
   return (
