@@ -1,12 +1,21 @@
 @use "../../abstracts/" as *;
 
 .app-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 20px;
-  row-gap: 10px;
-  justify-content: space-evenly;
   padding: 50px;
+  .email-cards {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 10px;
+  }
+  .no-emails-found-wrapper {
+    @include centerBy("flex");
+    flex-direction: column;
+    gap: 15px;
+    h2 {
+      font-size: 18px;
+    }
+  }
 }
 
 @media (max-width: $tablet) {

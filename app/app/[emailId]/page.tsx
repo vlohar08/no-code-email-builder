@@ -21,10 +21,7 @@ function EditEmail() {
   const updateEmailEditor = useUpdateEmailEditor();
 
   function onDragEnd(result: DropResult) {
-    const source = result.source?.droppableId;
-    const draggedElement = result?.draggableId;
     const destination = result.destination?.droppableId;
-
     //If element is dragged in the content area
     if (destination === "email-content") {
       updateEmailEditor({

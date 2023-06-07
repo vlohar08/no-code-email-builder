@@ -3,7 +3,11 @@ import React from "react";
 import SiteLogo from "@/assets/no-code-email-builder-logo.svg";
 import DefaultAvatar from "@/assets/default/avatar.webp";
 
-function Header() {
+type HeaderProps = {
+  name: string | undefined;
+};
+
+function Header({ name }: HeaderProps) {
   return (
     <header className="app-header-wrapper">
       <Image
@@ -20,7 +24,7 @@ function Header() {
           alt="User Avatar"
         />
         <div>
-          <p>User_Name</p>
+          <p>{name || "Guest"}</p>
         </div>
       </div>
     </header>

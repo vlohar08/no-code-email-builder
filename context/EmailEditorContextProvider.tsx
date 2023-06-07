@@ -41,7 +41,7 @@ export const ACTIONS = {
 
 //Default Values
 // @ts-ignore
-const defaultValues: EmailEditorContextTypes = {
+export const defaultValues: EmailEditorContextTypes = {
   activeSidebarTab: "elements",
   selectedElement: null,
   settings: {
