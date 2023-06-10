@@ -1,0 +1,31 @@
+@use "../abstracts/" as *;
+
+.loading-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  @include centerBy("flex");
+  background-color: rgb(var(--primary-color));
+  div {
+    @include centerBy("flex");
+    gap: 15px;
+    color: white;
+  }
+  svg {
+    animation: rotate infinite 1s ease-in-out;
+  }
+  h2 {
+    color: white;
+    font-size: 40px;
+  }
+  @keyframes rotate {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

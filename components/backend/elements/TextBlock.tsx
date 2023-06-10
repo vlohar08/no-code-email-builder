@@ -3,6 +3,7 @@ import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { TextBlockElement } from "@/types/EmailEditorContext.types";
 import ElementsHoverOverlay from "../ElementsHoverOverlay";
+import { startCase } from "lodash";
 
 interface TextBlockProps extends TextBlockElement {
   onClick: (element: any) => void;
@@ -27,7 +28,7 @@ function TextBlock({ id, settings, index, onClick }: TextBlockProps) {
         >
           <div
             style={{
-              fontFamily: settings.fontFamily,
+              fontFamily: startCase(settings.fontFamily),
               fontWeight: settings.fontWeight,
               fontSize: settings.fontSize,
               color: settings.textColor,

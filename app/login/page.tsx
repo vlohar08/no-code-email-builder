@@ -17,18 +17,18 @@ function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { session, isLoading } = useSession();
+  const session = useSession();
   const router = useRouter();
   function handleLoginWithEmail({ email }: FieldValues) {
-    account.createMagicURLSession(ID.unique(), email, "/app");
+    account.createMagicURLSession(ID.unique(), email);
   }
 
   function handleLoginWithGoogle() {
-    account.createOAuth2Session("google", "/app", "/login");
+    account.createOAuth2Session("google", "localhost/app");
   }
 
   useEffect(() => {
-    if (session && !isLoading) {
+    if (session.session && !session.isLoading) {
       router.push("/app");
     }
   }, [session]);

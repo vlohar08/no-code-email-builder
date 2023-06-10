@@ -2,6 +2,9 @@
 
 .email-editor-content-wrapper {
   height: 100%;
+  * {
+    font-family: unset;
+  }
   a,
   iframe {
     pointer-events: none;
@@ -22,7 +25,25 @@
     z-index: 3;
   }
   .hide-on-desktop {
+    border: 1px dashed grey;
+    &::before {
+      content: "Hidden on desktop";
+      opacity: 1;
+    }
+    div {
+      opacity: 0.2;
+    }
   }
-  .hide-on-mobile {
+  @media (max-width: 620px) {
+    .hide-on-mobile {
+      border: 1px dashed grey;
+      &::before {
+        content: "Hidden on mobile";
+        opacity: 1;
+      }
+      div {
+        opacity: 0.2;
+      }
+    }
   }
 }

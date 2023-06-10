@@ -1,0 +1,26 @@
+@use "../abstracts/" as *;
+
+.error-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  @include centerBy("flex");
+  flex-direction: column;
+  background-color: rgb(219, 101, 101);
+  div {
+    @include centerBy("flex");
+    gap: 15px;
+    color: white;
+  }
+  h2 {
+    color: white;
+    font-size: 40px;
+  }
+  p {
+    color: white;
+    font-size: 18px;
+    margin-top: 15px;
+  }
+}

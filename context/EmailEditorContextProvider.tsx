@@ -5,9 +5,17 @@ import {
   GlobalSettings,
 } from "@/types/EmailEditorContext.types";
 import { nanoid } from "nanoid";
-import React, { Dispatch, createContext, useContext, useReducer } from "react";
-import { SectionElement } from "@/types/EmailEditorContext.types";
+import React, {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useContext,
+  useReducer,
+  useState,
+} from "react";
 import { cloneDeep } from "lodash";
+import { database } from "@/appwrite/client_init";
+import { toast } from "react-hot-toast";
 
 //Context Setup
 // @ts-ignore
@@ -17,6 +25,10 @@ const UpdateEmailEditorContext = createContext<
     type: string;
     payload: any;
   }>
+>(() => {});
+export const EmailSaveContext = createContext<boolean>(false);
+export const UpdateEmailSaveContext = createContext<
+  Dispatch<SetStateAction<boolean>>
 >(() => {});
 
 //Custom Hooks
@@ -37,6 +49,7 @@ export const ACTIONS = {
   UPDATE_ELEMENT_NESTED_SETTINGS: "update-element-nested-settings",
   ADD_ELEMENT_IN_COLUMN: "add-element-in-column",
   DELETE_ELEMENT: "delete-element",
+  LOAD_EMAIL_FROM_SERVER: "load-email-from-server",
 };
 
 //Default Values
@@ -46,7 +59,7 @@ export const defaultValues: EmailEditorContextTypes = {
   selectedElement: null,
   settings: {
     contentAreaWidth: 480,
-    backgroundColor: "transparent",
+    backgroundColor: "#ffffff",
     contentAreaAlignment: "center",
     showBackgroundImage: false,
     backgroundImageUrl: "",
@@ -55,6 +68,32 @@ export const defaultValues: EmailEditorContextTypes = {
   },
   content: [],
 };
+
+//Update Email On Server
+let saveTimeout: any = null;
+async function handleUpdateEmailOnServer(state: any) {
+  if (!state.id) return;
+  if (saveTimeout) {
+    clearTimeout(saveTimeout);
+    saveTimeout = null;
+  }
+
+  saveTimeout = setTimeout(() => {
+    const savePromise = database.updateDocument(
+      process.env.NEXT_PUBLIC_DATABASE_ID as string,
+      process.env.NEXT_PUBLIC_COLLECTION_ID as string,
+      state.id,
+      {
+        content: JSON.stringify(state),
+      }
+    );
+    toast.promise(savePromise, {
+      loading: "Saving",
+      success: "Saved",
+      error: "Error in Saving Email",
+    });
+  }, 3000);
+}
 
 //Reducer Function
 function handleEmailEditor(
@@ -87,6 +126,7 @@ function handleEmailEditor(
         element.columns[0].id = "column-" + nanoid(10);
         newState.content.splice(destination.index, 0, element);
       }
+      handleUpdateEmailOnServer(newState);
       return newState;
     }
     case ACTIONS.CHANGE_SIDEBAR_SETTINGS_TAB_CONTENT: {
@@ -102,27 +142,24 @@ function handleEmailEditor(
         const title: keyof GlobalSettings = action.payload.title;
         // @ts-ignore
         newState.settings[title] = action.payload.value;
-        return newState;
-      }
-
-      if (action.payload.id.includes("section")) {
+      } else if (action.payload.id.includes("section")) {
         newState.content.find((section: any) => {
           if (section.id === action.payload.id) {
             section.settings[action.payload.title] = action.payload.value;
           }
         });
-        return newState;
-      }
-
-      newState.content.find((section: any) => {
-        section.columns.find((column: any) => {
-          column.content.find((element: any) => {
-            if (element.id === action.payload.id) {
-              element.settings[action.payload.title] = action.payload.value;
-            }
+      } else {
+        newState.content.find((section: any) => {
+          section.columns.find((column: any) => {
+            column.content.find((element: any) => {
+              if (element.id === action.payload.id) {
+                element.settings[action.payload.title] = action.payload.value;
+              }
+            });
           });
         });
-      });
+      }
+      handleUpdateEmailOnServer(newState);
       return newState;
     }
     case ACTIONS.UPDATE_ELEMENT_NESTED_SETTINGS: {
@@ -135,18 +172,18 @@ function handleEmailEditor(
             section.settings[titles[0]][titles[1]] = value;
           }
         });
-        return newState;
-      }
-
-      newState.content.find((section: any) => {
-        section.columns.find((column: any) => {
-          column.content.find((element: any) => {
-            if (element.id === id) {
-              element.settings[titles[0]][titles[1]] = value;
-            }
+      } else {
+        newState.content.find((section: any) => {
+          section.columns.find((column: any) => {
+            column.content.find((element: any) => {
+              if (element.id === id) {
+                element.settings[titles[0]][titles[1]] = value;
+              }
+            });
           });
         });
-      });
+      }
+      handleUpdateEmailOnServer(newState);
       return newState;
     }
     case ACTIONS.ADD_ELEMENT_IN_COLUMN: {
@@ -167,6 +204,7 @@ function handleEmailEditor(
           }
         });
       });
+      handleUpdateEmailOnServer(newState);
       return newState;
     }
     case ACTIONS.DELETE_ELEMENT: {
@@ -187,7 +225,12 @@ function handleEmailEditor(
           });
         });
       }
+      newState.selectedElement = null;
+      handleUpdateEmailOnServer(newState);
       return newState;
+    }
+    case ACTIONS.LOAD_EMAIL_FROM_SERVER: {
+      return action.payload;
     }
     default: {
       return state;
@@ -202,10 +245,15 @@ function EmailEditorContextProvider({
 }) {
   // @ts-ignore
   const [emailEditor, dispatch] = useReducer(handleEmailEditor, defaultValues);
+  const [isSaving, setIsSaving] = useState(false);
   return (
     <EmailEditorContext.Provider value={emailEditor}>
       <UpdateEmailEditorContext.Provider value={dispatch}>
-        {children}
+        <EmailSaveContext.Provider value={isSaving}>
+          <UpdateEmailSaveContext.Provider value={setIsSaving}>
+            {children}
+          </UpdateEmailSaveContext.Provider>
+        </EmailSaveContext.Provider>
       </UpdateEmailEditorContext.Provider>
     </EmailEditorContext.Provider>
   );

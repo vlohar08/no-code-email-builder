@@ -245,6 +245,7 @@ export type GlobalSettings = {
 };
 
 export type EmailEditorContextTypes = {
+  id: string;
   activeSidebarTab: "elements" | "settings";
   selectedElement: SelectedElement | null;
   settings: GlobalSettings;

@@ -81,11 +81,12 @@ function SidebarSocialSettings({ id, settings }: SidebarSocialSettingsProps) {
         title="Icon size"
         state={settings.iconSize}
       />
-      <OptionsSelector
+      <InputWithPlusMinusButtons
+        min={5}
+        max={30}
         id={id}
-        state={settings.iconSpacing}
         title="Icon spacing"
-        options={[5, 10, 15, 20]}
+        state={settings.iconSpacing}
       />
       <h6 className="section-separator">Block Settings</h6>
       <BlockPaddingCustomizer id={id} state={settings.block.padding} />

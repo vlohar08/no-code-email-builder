@@ -32,29 +32,33 @@ function TextAlignOptionsSelector({
     <div className="align-options-selector-wrapper default-padding default-two-grid default-border">
       <p>Text Align</p>
       <div>
-        <button type="button" onClick={() => handleChange("left")}>
+        <button
+          className="svg-option"
+          type="button"
+          onClick={() => handleChange("left")}
+        >
           <IconAlignLeft data-active={state === "left"} />
         </button>
         <button
+          className="svg-option"
           type="button"
-          data-active={state === "center"}
           onClick={() => handleChange("center")}
         >
-          <IconAlignCenter />
+          <IconAlignCenter data-active={state === "center"} />
         </button>
         <button
+          className="svg-option"
           type="button"
-          data-active={state === "right"}
           onClick={() => handleChange("right")}
         >
-          <IconAlignRight />
+          <IconAlignRight data-active={state === "right"} />
         </button>
         <button
+          className="svg-option"
           type="button"
-          data-active={state === "justify"}
           onClick={() => handleChange("justify")}
         >
-          <IconAlignJustified />
+          <IconAlignJustified data-active={state === "justify"} />
         </button>
       </div>
     </div>

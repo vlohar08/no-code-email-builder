@@ -2,6 +2,8 @@
 @forward "./client/index.scss";
 @forward "./input.scss";
 @forward "./button.scss";
+@forward "./loading";
+@forward "./error";
 
 .toggle-button {
   position: relative;
