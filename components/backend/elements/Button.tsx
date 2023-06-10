@@ -4,6 +4,7 @@ import { Draggable } from "react-beautiful-dnd";
 import { ButtonElement } from "@/types/EmailEditorContext.types";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import ElementsHoverOverlay from "../ElementsHoverOverlay";
+import { startCase } from "lodash";
 
 interface ButtonProps extends ButtonElement {
   onClick: (element: any) => void;
@@ -45,7 +46,7 @@ function Button({ id, index, settings, onClick }: ButtonProps) {
                       ? settings.width + "%"
                       : settings.width,
                   color: settings.textColor,
-                  fontFamily: settings.fontFamily,
+                  fontFamily: startCase(settings.fontFamily),
                   fontSize: settings.fontSize,
                   fontWeight: settings.fontWeight,
                   backgroundColor: settings.backgroundColor,

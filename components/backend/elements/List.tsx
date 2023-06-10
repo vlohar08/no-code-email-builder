@@ -4,6 +4,7 @@ import { ListElement } from "@/types/EmailEditorContext.types";
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import ElementsHoverOverlay from "../ElementsHoverOverlay";
+import { startCase } from "lodash";
 
 interface ListProps extends ListElement {
   onClick: (element: any) => void;
@@ -13,7 +14,7 @@ function List({ id, settings, index, onClick }: ListProps) {
   const ListTag = `<${settings.listType} start="${settings.startListFrom}"
   style="
   font-family:${settings.fontFamily};
-  font-weight:${settings.fontWeight};
+  font-weight:${startCase(settings.fontFamily)};
   font-size: ${settings.fontSize}px;
   color:${settings.textColor};
   text-align: ${settings.textAlign};
