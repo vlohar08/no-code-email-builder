@@ -11,9 +11,13 @@ import { ID } from "appwrite";
 import { defaultValues } from "@/context/EmailEditorContextProvider";
 import { useRouter } from "next/navigation";
 import LoadingAndErrorManager from "@/components/LoadingAndErrorManager";
+import ExportEmailPopup from "@/components/ExportEmailPopup";
+import { nanoid } from "nanoid";
 
 function App() {
   const [emails, setEmails] = useState<any[]>([]);
+  const [exportCode, setExportCode] = useState("");
+  const [isPopupEnabled, setIsPopupEnabled] = useState(false);
   const router = useRouter();
 
   async function fetchEmails() {
@@ -33,7 +37,10 @@ function App() {
       process.env.NEXT_PUBLIC_DATABASE_ID as string,
       process.env.NEXT_PUBLIC_COLLECTION_ID as string,
       ID.unique(),
-      { title: "Email", content: JSON.stringify(defaultValues) }
+      {
+        title: "Email-" + nanoid(5),
+        content: JSON.stringify(defaultValues),
+      }
     );
     toast.promise(newEmail, {
       loading: "Creating a new email",
@@ -87,8 +94,16 @@ function App() {
                 key={email.id}
                 data={email}
                 onDelete={handleDeleteEmail}
+                setExportCode={setExportCode}
+                setIsPopupEnabled={setIsPopupEnabled}
               />
             ))}
+            {isPopupEnabled && (
+              <ExportEmailPopup
+                html={exportCode}
+                setIsPopupEnabled={setIsPopupEnabled}
+              />
+            )}
           </div>
         ) : (
           <div className="no-emails-found-wrapper">

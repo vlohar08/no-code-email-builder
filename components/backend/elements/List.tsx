@@ -13,8 +13,8 @@ interface ListProps extends ListElement {
 function List({ id, settings, index, onClick }: ListProps) {
   const ListTag = `<${settings.listType} start="${settings.startListFrom}"
   style="
-  font-family:${settings.fontFamily};
-  font-weight:${startCase(settings.fontFamily)};
+  font-family:${startCase(settings.fontFamily)};
+  font-weight:${settings.fontWeight};
   font-size: ${settings.fontSize}px;
   color:${settings.textColor};
   text-align: ${settings.textAlign};

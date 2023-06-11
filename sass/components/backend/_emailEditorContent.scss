@@ -1,15 +1,16 @@
 @use "../../abstracts/" as *;
 
 .email-editor-content-wrapper {
-  height: calc(100vh - 70px);
+  min-height: calc(100vh - 70px);
+  padding-bottom: 70px;
   * {
     font-family: unset;
   }
-  a,
-  iframe {
-    pointer-events: none;
+  li {
+    list-style-position: inside;
   }
   a {
+    pointer-events: none;
     color: inherit;
   }
   .section-element {

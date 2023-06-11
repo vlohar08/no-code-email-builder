@@ -42,7 +42,6 @@ export type SectionElement = {
     backgroundImageUrl: string;
     shouldBackgroundImageRepeat: boolean;
     isBackgroundImageCentered: boolean;
-    hideOn?: "mobile" | "desktop";
   };
   columns: {
     id: string;

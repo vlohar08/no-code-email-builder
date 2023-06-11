@@ -3,9 +3,6 @@ import ColorPicker from "../setting customizers/ColorPicker";
 import { SectionElement } from "@/types/EmailEditorContext.types";
 import OptionToggle from "../setting customizers/OptionToggle";
 import BackgroundImageEditor from "../setting customizers/BackgroundImageEditor";
-import HideOnMobileAndDesktopButtons from "../setting customizers/HideOnMobileAndDesktopButtons";
-import VerticalAlignOptions from "../setting customizers/VerticalAlignOptionsSelector";
-import InputWithPlusMinusButtons from "../setting customizers/InputWithPlusMinusButtons";
 import BorderEditor from "../setting customizers/BorderEditor";
 
 type SidebarSectionSettingsProps = {
@@ -39,7 +36,6 @@ function SidebarSectionSettings({ id, settings }: SidebarSectionSettingsProps) {
         state={settings.contentAreaBorder}
         payloadTitle="contentAreaBorder"
       />
-      <HideOnMobileAndDesktopButtons id={id} state={settings.hideOn} />
     </>
   );
 }

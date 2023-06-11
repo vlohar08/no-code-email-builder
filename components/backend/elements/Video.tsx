@@ -19,6 +19,7 @@ function Video({ id, index, settings, onClick }: VideoProps) {
             {...provided.dragHandleProps}
             {...provided.draggableProps}
             className={`content-element hide-on-${settings.block?.hideOn}`}
+            onClick={onClick}
             style={{
               position: "relative",
               padding:
@@ -27,13 +28,13 @@ function Video({ id, index, settings, onClick }: VideoProps) {
                   : `${settings.block.padding.paddingTop}px ${settings.block.padding.paddingRight}px ${settings.block.padding.paddingBottom}px ${settings.block.padding.paddingLeft}px`,
             }}
           >
-            <ElementsHoverOverlay provided={provided} id={id} />
             <iframe
               title={settings.title}
               width="100%"
               height="auto"
               src={settings.src}
             ></iframe>
+            <ElementsHoverOverlay provided={provided} id={id} />
           </div>
         )}
       </Draggable>

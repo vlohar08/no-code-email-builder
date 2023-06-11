@@ -1,0 +1,45 @@
+@use "../../abstracts/" as *;
+
+.export-email-popup-wrapper {
+  @include centerBy("position");
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(#000, 0.2);
+  > div {
+    @include centerBy("position");
+    width: 90%;
+    max-width: 600px;
+    background-color: rgb(var(--secondary-bg-color));
+    border-radius: 5px;
+    box-shadow: var(--normal-box-shadow);
+    padding: 10px;
+  }
+  .close-button {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    border: none;
+    outline: none;
+    background-color: rgb(var(--primary-color));
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    line-height: 0;
+    cursor: pointer;
+  }
+  .code-wrapper {
+    background-color: white;
+    padding: 10px;
+    height: 300px;
+    overflow: auto;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid var(--light-border-color);
+  }
+  .export-options {
+    button {
+      margin-top: 10px;
+    }
+  }
+}
