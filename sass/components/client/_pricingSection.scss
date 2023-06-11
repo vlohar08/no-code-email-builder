@@ -15,7 +15,13 @@
   }
   h5 {
     font-size: 24px;
-    text-decoration: underline;
+  }
+  h6 {
+    font-size: 32px;
+    margin: 15px 0;
+    span {
+      font-size: 15px;
+    }
   }
   p {
     font-size: 18px;
@@ -28,15 +34,20 @@
   }
   .price-card {
     border: 1px solid var(--light-border-color);
+    border-top: 5px solid rgb(var(--primary-color));
     border-radius: 5px;
     padding: 20px;
-    text-align: center;
     background-color: white;
     ol {
       margin-top: 20px;
       font-size: 18px;
+      list-style-type: none;
       list-style-position: inside;
       text-align: left;
+      font-weight: 300;
+      li:before {
+        content: "✔️";
+      }
     }
   }
   @media (max-width: $laptop) {

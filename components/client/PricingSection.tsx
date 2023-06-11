@@ -1,4 +1,6 @@
 import React from "react";
+import Button from "../Button";
+import Link from "next/link";
 
 function PricingSection() {
   return (
@@ -8,7 +10,13 @@ function PricingSection() {
         <div className="price-cards-wrapper">
           <div className="price-card">
             <h5>FREE</h5>
-            <p>You can use our beta service for free!</p>
+            <p>Take your emails to the next level</p>
+            <h6>
+              $0 <span>per month</span>
+            </h6>
+            <Link href="/login">
+              <Button>Get started for free!</Button>
+            </Link>
             <ol>
               <li>Access to All Email Elements</li>
               <li>Cloud Save</li>
