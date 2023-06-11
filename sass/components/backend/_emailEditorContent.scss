@@ -1,7 +1,7 @@
 @use "../../abstracts/" as *;
 
 .email-editor-content-wrapper {
-  height: 100%;
+  height: calc(100vh - 70px);
   * {
     font-family: unset;
   }
@@ -28,7 +28,7 @@
     border: 1px dashed grey;
     &::before {
       content: "Hidden on desktop";
-      opacity: 1;
+      background-color: transparent;
     }
     div {
       opacity: 0.2;

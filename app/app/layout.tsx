@@ -1,5 +1,4 @@
 "use client";
-import Footer from "@/components/backend/Footer";
 import Header from "@/components/backend/Header";
 import { useSession } from "@/context/SessionProvider";
 import { useRouter } from "next/navigation";
@@ -26,8 +25,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
           },
         }}
       />
-      <main style={{ minHeight: "calc(100vh - 140px)" }}>{children}</main>
-      <Footer />
+      <main>{children}</main>
     </>
   );
 }
