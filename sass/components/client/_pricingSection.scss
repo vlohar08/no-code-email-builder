@@ -1,0 +1,48 @@
+@use "../../abstracts/" as *;
+
+.pricing-section-wrapper {
+  width: 100%;
+  padding: 70px 20px;
+  background-color: white;
+  > div {
+    margin: auto;
+    max-width: var(--content-width);
+  }
+  h4 {
+    font-size: 28px;
+    text-align: center;
+    font-weight: bold;
+  }
+  h5 {
+    font-size: 24px;
+    text-decoration: underline;
+  }
+  p {
+    font-size: 18px;
+  }
+
+  .price-cards-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .price-card {
+    border: 1px solid var(--light-border-color);
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    background-color: white;
+    ol {
+      margin-top: 20px;
+      font-size: 18px;
+      list-style-position: inside;
+      text-align: left;
+    }
+  }
+  @media (max-width: $laptop) {
+    padding: 40px;
+    h5 {
+      font-size: 20px;
+    }
+  }
+}

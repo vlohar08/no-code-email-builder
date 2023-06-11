@@ -1,0 +1,66 @@
+@use "../../abstracts/" as *;
+
+.app-features-wrapper {
+  padding: 70px 20px;
+  width: 100%;
+  background-color: #ececec;
+  > div {
+    margin: auto;
+    max-width: 1000px;
+  }
+  h4 {
+    font-size: 28px;
+    span {
+      color: rgb(var(--primary-color));
+      background-color: rgba(var(--primary-color), 0.1);
+      opacity: 1;
+      padding: 5px;
+    }
+  }
+  h5 {
+    font-size: 16px;
+  }
+  .feature-cards-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+  }
+  .feature-card {
+    border: 1px solid var(--medium-border-color);
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+    transition: 0.3s;
+    background-color: white;
+    &:hover {
+      scale: 1.05;
+    }
+  }
+  img {
+    object-fit: cover;
+    object-position: top;
+    height: auto;
+    aspect-ratio: 1/1;
+  }
+
+  h4,
+  h5 {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+  }
+  @media (max-width: $laptop) {
+    padding: 40px;
+    h5 {
+      font-size: 20px;
+    }
+    .feature-cards-wrapper {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: $mobile) {
+    .feature-cards-wrapper {
+      grid-template-columns: 1fr;
+    }
+  }
+}

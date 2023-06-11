@@ -1,0 +1,8 @@
+@use "../../abstracts/" as *;
+
+.home-page-wrapper {
+  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+  * {
+    font-family: "Inter", "Segoe UI", Tahoma, Verdana, sans-serif !important;
+  }
+}

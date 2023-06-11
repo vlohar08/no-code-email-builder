@@ -1,0 +1,68 @@
+@use "../../abstracts/" as *;
+
+.client-header-wrapper {
+  padding: 20px;
+  border-bottom: 1px solid #bababa;
+  background-color: white;
+  a {
+    color: black;
+    &:hover {
+      color: rgb(var(--primary-color));
+    }
+  }
+  > div {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--content-width);
+  }
+  .header-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  .header-logo {
+    width: 250px;
+    height: auto;
+  }
+  .header-menu {
+    > ul {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 16px;
+      list-style-type: none;
+    }
+  }
+  .login-btn {
+    background-color: rgb(var(--primary-color));
+    color: white;
+    padding: 5px 20px;
+    border-radius: 5px;
+    border: 1px solid rgb(var(--primary-color));
+    transition: 0.3s;
+    &:hover {
+      scale: 1.05;
+    }
+  }
+  .get-started-btn {
+    background-color: rgb(var(--secondary-color));
+    color: rgb(var(--primary-color));
+    padding: 5px 20px;
+    border-radius: 5px;
+    border: 1px solid rgb(var(--primary-color));
+    transition: 0.3s;
+    &:hover {
+      scale: 1.05;
+    }
+  }
+  @media (max-width: $laptop) {
+    > div {
+      justify-content: center;
+    }
+    .header-menu,
+    .header-buttons {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+@use "../../abstracts/" as *;
+
+.home-hero-section-wrapper {
+  width: 100%;
+  padding: 70px 20px;
+  background-color: white;
+  > div {
+    margin: auto;
+    max-width: var(--content-width);
+  }
+  h3 {
+    font-size: 46px;
+    text-align: center;
+    font-weight: bold;
+    span {
+      color: rgb(var(--primary-color));
+      opacity: 1;
+    }
+  }
+  p {
+    font-size: 18px;
+    text-align: center;
+    margin: 20px 0;
+  }
+  .get-started-btn {
+    width: fit-content;
+    background-color: rgb(var(--primary-color));
+    color: white;
+    padding: 5px 20px;
+    border-radius: 5px;
+    transition: 0.3s;
+    margin: auto;
+    &:hover {
+      scale: 1.05;
+    }
+  }
+  img {
+    height: auto;
+    margin-top: 20px;
+    border-radius: 5px;
+    object-fit: contain;
+  }
+  @media (max-width: $laptop) {
+    padding: 40px 20px;
+    h3 {
+      font-size: 34px;
+    }
+    p {
+      font-size: 18px;
+    }
+  }
+}
