@@ -22,6 +22,7 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
     "react-hot-toast": "^2.4.1",
+    "react-markdown": "^8.0.7",
     "react-quill": "^2.0.0",
     "sass": "^1.62.1",
     "typescript": "5.0.4",
@@ -31,8 +32,8 @@
     "@types/lodash": "^4.14.195",
     "@types/node": "20.1.7",
     "@types/react": "18.2.6",
-    "@types/react-dom": "18.2.4",
     "@types/react-beautiful-dnd": "^13.1.4",
+    "@types/react-dom": "18.2.4",
     "@types/webfontloader": "^1.6.35"
   }
 }

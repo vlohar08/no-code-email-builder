@@ -14,7 +14,6 @@ function Footer() {
         </div>
         <div>
           <Link href="/privacy-policy">Privacy policy</Link>
-          <Link href="/terms-of-use">Terms of use</Link>
         </div>
       </div>
     </footer>

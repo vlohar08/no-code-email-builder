@@ -1,0 +1,33 @@
+@use "../../abstracts/" as *;
+
+.policies-wrapper {
+  > div {
+    width: 100%;
+    padding: 70px 20px;
+    background-color: white;
+  }
+  article {
+    margin: auto;
+    max-width: var(--content-width);
+  }
+  h1 {
+    font-size: 24px;
+    font-weight: bolder;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  p {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  ul {
+    list-style-position: inside;
+    font-size: 16px;
+    margin: 15px 0;
+  }
+}

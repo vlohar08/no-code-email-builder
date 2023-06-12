@@ -74,7 +74,7 @@ function Login() {
               <Image
                 width={20}
                 height={20}
-                src="/assets/google-icon.webp"
+                src="/assets/icons/google-icon.webp"
                 alt="Google Icon"
               />
             }
