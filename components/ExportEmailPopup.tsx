@@ -1,14 +1,14 @@
 import { IconX } from "@tabler/icons-react";
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import Button from "./Button";
 import { toast } from "react-hot-toast";
 
 type ExportEmailPopupPros = {
   html: string;
-  setIsPopupEnabled: Dispatch<SetStateAction<boolean>>;
+  onClose: () => void;
 };
 
-function ExportEmailPopup({ html, setIsPopupEnabled }: ExportEmailPopupPros) {
+function ExportEmailPopup({ html, onClose }: ExportEmailPopupPros) {
   function handleCopy() {
     navigator.clipboard.writeText(html);
     toast.success("The HTML was copied");
@@ -29,10 +29,7 @@ function ExportEmailPopup({ html, setIsPopupEnabled }: ExportEmailPopupPros) {
   return (
     <aside className="export-email-popup-wrapper">
       <div>
-        <button
-          className="close-button"
-          onClick={() => setIsPopupEnabled(false)}
-        >
+        <button className="close-button" onClick={onClose}>
           <IconX />
         </button>
         <div className="export-email-popup-content">

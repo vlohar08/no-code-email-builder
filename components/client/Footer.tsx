@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import SiteLogo from "@/assets/no-code-email-builder-logo.svg";
+import SiteLogo from "@/assets/brand/no-code-email-builder-logo.svg";
 import Image from "next/image";
 
 function Footer() {

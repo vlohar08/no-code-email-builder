@@ -47,8 +47,9 @@ function EditEmail({ params }: { params: { emailId: string } }) {
   function onDragEnd(result: DropResult) {
     const source = result.source?.droppableId;
     const destination = result.destination?.droppableId;
+    const draggableId = result?.draggableId;
 
-    // Check if the item was dropped outside a droppable area
+    //If element is dropped outside of droppable area
     if (!destination) {
       return;
     }
@@ -60,10 +61,23 @@ function EditEmail({ params }: { params: { emailId: string } }) {
         payload: result,
       });
     }
+
     //If element is dragged in any column of a section
     else if (destination?.includes("column") && source === "sidebar") {
       updateEmailEditor({
         type: ACTIONS.ADD_ELEMENT_IN_COLUMN,
+        payload: result,
+      });
+    }
+
+    //If section is moved inside the content area
+    else if (
+      source === "email-content" &&
+      destination === "email-content" &&
+      draggableId.includes("section")
+    ) {
+      updateEmailEditor({
+        type: ACTIONS.MOVE_SECTION_ELEMENT,
         payload: result,
       });
     }

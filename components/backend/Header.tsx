@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import SiteLogo from "@/assets/no-code-email-builder-logo.svg";
+import SiteLogo from "@/assets/brand/no-code-email-builder-logo.svg";
 import DefaultAvatar from "@/assets/default/avatar.webp";
 
 type HeaderProps = {

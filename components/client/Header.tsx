@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import NoCodeEmailBuilderLogo from "@/assets/no-code-email-builder-logo.svg";
+import NoCodeEmailBuilderLogo from "@/assets/brand/no-code-email-builder-logo.svg";
 import Button from "../Button";
 import Link from "next/link";
 

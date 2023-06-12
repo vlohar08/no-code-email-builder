@@ -72,6 +72,7 @@ function SidebarElements() {
             title="Spacer"
             index={10}
           />
+          {provided.placeholder}
         </div>
       )}
     </Droppable>

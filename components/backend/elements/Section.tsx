@@ -27,7 +27,7 @@ function Section({
 }: SectionProps) {
   return (
     <ErrorBoundary>
-      <Draggable draggableId={id} index={index} isDragDisabled>
+      <Draggable draggableId={id} index={index}>
         {(provided) => (
           <section
             className="section-element"

@@ -49,6 +49,7 @@ function EmailContent() {
                   <EmptyColumn />
                 </div>
               )}
+              {provided.placeholder}
             </div>
           </div>
         )}

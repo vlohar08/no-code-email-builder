@@ -50,6 +50,7 @@ export const ACTIONS = {
   ADD_ELEMENT_IN_COLUMN: "add-element-in-column",
   DELETE_ELEMENT: "delete-element",
   LOAD_EMAIL_FROM_SERVER: "load-email-from-server",
+  MOVE_SECTION_ELEMENT: "move-section-element",
 };
 
 //Default Values
@@ -231,6 +232,17 @@ function handleEmailEditor(
     }
     case ACTIONS.LOAD_EMAIL_FROM_SERVER: {
       return action.payload;
+    }
+    case ACTIONS.MOVE_SECTION_ELEMENT: {
+      const { source, destination, draggableId } = action.payload;
+      const newState = cloneDeep(state);
+      const draggedElement: any = newState.content.find(
+        (section: any) => section.id === draggableId
+      );
+      newState.content.splice(source.index, 1);
+      newState.content.splice(destination.index, 0, draggedElement);
+      handleUpdateEmailOnServer(newState);
+      return newState;
     }
     default: {
       return state;

@@ -1,9 +1,9 @@
 import Image from "next/image";
 import React from "react";
-import EmailElementsImg from "@/assets/email-elements.png";
-import EmailDragAndDropImg from "@/assets/email-drag-and-drop.png";
-import EmailElementSettingsImg from "@/assets/email-element-settings.png";
-import EmailCardImg from "@/assets/email-card.png";
+import EmailElementsImg from "@/assets/screenshots/email-elements.png";
+import EmailDragAndDropImg from "@/assets/screenshots/email-drag-and-drop.png";
+import EmailElementSettingsImg from "@/assets/screenshots/email-element-settings.png";
+import EmailCardImg from "@/assets/screenshots/email-card.png";
 
 function AppFeatureSections() {
   return (

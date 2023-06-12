@@ -71,6 +71,11 @@ function App() {
     });
   }
 
+  function handlePopup() {
+    setIsPopupEnabled(false);
+    setExportCode("");
+  }
+
   return (
     <LoadingAndErrorManager onLoad={fetchEmails}>
       <div className="app-wrapper">
@@ -99,10 +104,7 @@ function App() {
               />
             ))}
             {isPopupEnabled && (
-              <ExportEmailPopup
-                html={exportCode}
-                setIsPopupEnabled={setIsPopupEnabled}
-              />
+              <ExportEmailPopup html={exportCode} onClose={handlePopup} />
             )}
           </div>
         ) : (

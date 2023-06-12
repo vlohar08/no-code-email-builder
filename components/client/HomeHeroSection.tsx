@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../Button";
 import Image from "next/image";
-import EmailBuilderImg from "@/assets/email-builder.png";
+import EmailBuilderImg from "@/assets/screenshots/email-builder.png";
 import Link from "next/link";
 
 function HomeHeroSection() {
