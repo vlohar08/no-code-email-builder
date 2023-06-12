@@ -5,11 +5,12 @@ import { IconMail } from "@tabler/icons-react";
 import Image from "next/image";
 import React, { useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
-import SiteLogo from "@/assets/no-code-email-builder-logo.svg";
+import SiteLogo from "@/assets/brand/no-code-email-builder-logo.svg";
 import { account } from "@/appwrite/client_init";
 import { ID } from "appwrite";
 import { useSession } from "@/context/SessionProvider";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 function Login() {
   const {
@@ -20,11 +21,24 @@ function Login() {
   const session = useSession();
   const router = useRouter();
   function handleLoginWithEmail({ email }: FieldValues) {
-    account.createMagicURLSession(ID.unique(), email);
+    const loginWithEmail = account.createMagicURLSession(
+      ID.unique(),
+      email,
+      process.env.NEXT_PUBLIC_AUTH_SUCCESS_URL
+    );
+    toast.promise(loginWithEmail, {
+      loading: "Sending you the login link",
+      success: "Check your email for login link",
+      error: "Unable to login",
+    });
   }
 
   function handleLoginWithGoogle() {
-    account.createOAuth2Session("google", "localhost/app");
+    account.createOAuth2Session(
+      "google",
+      process.env.NEXT_PUBLIC_AUTH_SUCCESS_URL,
+      process.env.NEXT_PUBLIC_AUTH_FAILED_URL
+    );
   }
 
   useEffect(() => {
