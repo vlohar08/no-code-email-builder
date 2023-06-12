@@ -1,12 +1,18 @@
 @use "../../abstracts/" as *;
 
 .login-page-wrapper {
+  height: 100vh;
+  background-image: url("/assets/backgrounds/purple-pink-gradient-1.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
   > div {
     border: 1px solid var(--light-border-color);
     border-radius: 10px;
     padding: 20px;
     width: 95%;
     max-width: 500px;
+    background-color: white;
     @include centerBy("position");
   }
   .site-logo {

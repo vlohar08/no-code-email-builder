@@ -3,7 +3,7 @@
 .pricing-section-wrapper {
   width: 100%;
   padding: 70px 20px;
-  background-color: white;
+  background-color: #f3f3f3;
   > div {
     margin: auto;
     max-width: var(--content-width);
@@ -30,14 +30,15 @@
   .price-cards-wrapper {
     display: flex;
     justify-content: center;
+    gap: 20px;
     margin-top: 20px;
   }
   .price-card {
+    height: fit-content;
+    max-width: 350px;
     border: 1px solid var(--light-border-color);
-    border-top: 5px solid rgb(var(--primary-color));
     border-radius: 5px;
     padding: 20px;
-    background-color: white;
     ol {
       margin-top: 20px;
       font-size: 18px;
@@ -46,9 +47,28 @@
       text-align: left;
       font-weight: 300;
       li:before {
-        content: "✔️";
+        content: "✔️ ";
       }
     }
+    h5,
+    h6,
+    span {
+      color: inherit;
+    }
+    &:first-of-type {
+      background-color: white;
+      color: black;
+    }
+    &:nth-of-type(2) {
+      background-color: rgb(var(--primary-color));
+      color: white;
+      button {
+        background-color: white;
+      }
+    }
+  }
+  button {
+    border: 1px solid var(--light-border-color) !important;
   }
   @media (max-width: $laptop) {
     padding: 40px;

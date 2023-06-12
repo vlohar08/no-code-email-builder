@@ -4,6 +4,10 @@
   width: 100%;
   padding: 70px 20px;
   background-color: white;
+  background-image: url("/assets/backgrounds/purple-pink-gradient-1.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
   > div {
     margin: auto;
     max-width: var(--content-width);
@@ -40,6 +44,7 @@
     margin-top: 20px;
     border-radius: 5px;
     object-fit: contain;
+    box-shadow: var(--light-box-shadow);
   }
   @media (max-width: $laptop) {
     padding: 40px 20px;
