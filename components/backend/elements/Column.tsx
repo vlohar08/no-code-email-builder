@@ -12,12 +12,17 @@ type ColumnProps = {
 function Column({ id, children }: ColumnProps) {
   return (
     <ErrorBoundary>
-      <Droppable droppableId={id}>
-        {(provided) => (
+      <Droppable key={id} droppableId={id}>
+        {(provided, snapshot) => (
           <div
             {...provided.droppableProps}
             ref={provided.innerRef}
             className="column-element"
+            style={{
+              outline: snapshot.isDraggingOver
+                ? "2px solid rgb(var(--primary-color))"
+                : "none",
+            }}
           >
             {(children as any[])?.length ? children : <EmptyColumn />}
           </div>

@@ -10,8 +10,8 @@ function EmailContent() {
   const { settings, content } = useEmailEditor();
   return (
     <ErrorBoundary>
-      <Droppable droppableId="email-content">
-        {(provided) => (
+      <Droppable droppableId="email-content" direction="vertical">
+        {(provided, snapshot) => (
           <div
             {...provided.droppableProps}
             ref={provided.innerRef}
@@ -27,6 +27,9 @@ function EmailContent() {
                   ? "center"
                   : "",
               }),
+              outline: snapshot.isDraggingOver
+                ? "2px solid rgb(var(--primary-color))"
+                : "none",
             }}
           >
             <div className="email-editor-content-wrapper">

@@ -1,15 +1,6 @@
 "use client";
-import dynamic from "next/dynamic";
-const EmailContent = dynamic(
-  () => import("@/components/backend/EmailContent"),
-  {
-    ssr: false,
-  }
-);
-const EditEmailSidebar = dynamic(
-  () => import("@/components/backend/EditEmailSidebar"),
-  { ssr: false }
-);
+import EmailContent from "@/components/backend/EmailContent";
+import EditEmailSidebar from "@/components/backend/EditEmailSidebar";
 import {
   ACTIONS,
   useUpdateEmailEditor,
@@ -54,16 +45,23 @@ function EditEmail({ params }: { params: { emailId: string } }) {
   }
 
   function onDragEnd(result: DropResult) {
+    const source = result.source?.droppableId;
     const destination = result.destination?.droppableId;
+
+    // Check if the item was dropped outside a droppable area
+    if (!destination) {
+      return;
+    }
+
     //If element is dragged in the content area
-    if (destination === "email-content") {
+    if (destination === "email-content" && source === "sidebar") {
       updateEmailEditor({
         type: ACTIONS.ADD_ELEMENT,
         payload: result,
       });
     }
     //If element is dragged in any column of a section
-    else if (destination?.includes("column")) {
+    else if (destination?.includes("column") && source === "sidebar") {
       updateEmailEditor({
         type: ACTIONS.ADD_ELEMENT_IN_COLUMN,
         payload: result,

@@ -34,104 +34,117 @@ function RenderEmailContent({ content, settings }: RenderEmailContentProps) {
   }
 
   function renderEmail(content: any) {
+    let elementIndex = 0;
+    let sectionIndex = 0;
     return content.map((element: any, index: number) => {
       switch (element.name) {
         case "heading":
+          elementIndex = index ? (elementIndex += 1) : elementIndex;
           return (
             <Heading
               key={element.id}
               {...element}
-              index={index}
+              index={elementIndex}
               onClick={(e) => handleClick(e, element)}
             />
           );
         case "image":
-          // eslint-disable-next-line jsx-a11y/alt-text
+          elementIndex = index ? (elementIndex += 1) : elementIndex;
           return (
+            // eslint-disable-next-line jsx-a11y/alt-text
             <Image
               key={element.id}
               {...element}
-              index={index}
+              index={elementIndex}
               onClick={(e) => handleClick(e, element)}
             />
           );
         case "video":
+          elementIndex = index ? (elementIndex += 1) : elementIndex;
           return (
             <Video
               key={element.id}
               {...element}
-              index={index}
+              index={elementIndex}
               onClick={(e) => handleClick(e, element)}
             />
           );
         case "textBlock":
+          elementIndex = index ? (elementIndex += 1) : elementIndex;
           return (
             <TextBlock
               key={element.id}
               {...element}
-              index={index}
+              index={elementIndex}
               onClick={(e) => handleClick(e, element)}
             />
           );
         case "list":
+          elementIndex = index ? (elementIndex += 1) : elementIndex;
           return (
             <List
               key={element.id}
               {...element}
-              index={index}
+              index={elementIndex}
               onClick={(e) => handleClick(e, element)}
             />
           );
         case "social":
+          elementIndex = index ? (elementIndex += 1) : elementIndex;
           return (
             <Social
               key={element.id}
               {...element}
-              index={index}
+              index={elementIndex}
               onClick={(e) => handleClick(e, element)}
             />
           );
         case "button":
+          elementIndex = index ? (elementIndex += 1) : elementIndex;
           return (
             <Button
               key={element.id}
               {...element}
-              index={index}
+              index={elementIndex}
               onClick={(e) => handleClick(e, element)}
             />
           );
         case "divider":
+          elementIndex = index ? (elementIndex += 1) : elementIndex;
           return (
             <Divider
               key={element.id}
               {...element}
-              index={index}
+              index={elementIndex}
               onClick={(e) => handleClick(e, element)}
             />
           );
         case "spacer":
+          elementIndex = index ? (elementIndex += 1) : elementIndex;
           return (
             <Spacer
               key={element.id}
               {...element}
-              index={index}
+              index={elementIndex}
               onClick={(e) => handleClick(e, element)}
             />
           );
         case "section":
+          sectionIndex = index ? (sectionIndex += 1) : sectionIndex;
           return (
             <Section
               key={element.id}
               id={element.id}
               {...element}
               globalSettings={settings}
-              index={index}
+              index={sectionIndex}
               onClick={(e) => handleClick(e, element)}
             >
               {renderEmail(element.columns)}
             </Section>
           );
         case "column":
+          elementIndex = 0;
           return (
             <Column key={element.id} id={element.id}>
               {renderEmail(element.content)}

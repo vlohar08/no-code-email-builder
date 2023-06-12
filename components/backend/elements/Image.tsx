@@ -15,7 +15,6 @@ function Image({ id, settings, index, onClick }: ImageProps) {
       <Draggable draggableId={id} index={index} isDragDisabled>
         {(provided) => (
           <div
-            {...provided.dragHandleProps}
             {...provided.draggableProps}
             ref={provided.innerRef}
             className={`content-element hide-on-${settings.block?.hideOn}`}

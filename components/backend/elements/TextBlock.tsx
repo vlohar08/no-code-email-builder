@@ -11,11 +11,10 @@ interface TextBlockProps extends TextBlockElement {
 
 function TextBlock({ id, settings, index, onClick }: TextBlockProps) {
   return (
-    <Draggable draggableId={id} index={index}>
+    <Draggable draggableId={id} index={index} isDragDisabled>
       {(provided) => (
         <div
           ref={provided.innerRef}
-          {...provided.dragHandleProps}
           {...provided.draggableProps}
           onClick={onClick}
           className={`content-element hide-on-${settings.block?.hideOn}`}

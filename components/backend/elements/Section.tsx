@@ -30,11 +30,9 @@ function Section({
       <Draggable draggableId={id} index={index} isDragDisabled>
         {(provided) => (
           <section
-            id={id}
             className="section-element"
             onClick={onClick}
             ref={provided.innerRef}
-            {...provided.dragHandleProps}
             {...provided.draggableProps}
           >
             <div

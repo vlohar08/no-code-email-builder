@@ -12,11 +12,10 @@ interface SpacerProps extends SpacerElement {
 function Spacer({ id, settings, index, onClick }: SpacerProps) {
   return (
     <ErrorBoundary>
-      <Draggable draggableId={id} index={index}>
+      <Draggable draggableId={id} index={index} isDragDisabled>
         {(provided) => (
           <div
             ref={provided.innerRef}
-            {...provided.dragHandleProps}
             {...provided.draggableProps}
             onClick={onClick}
             className={`content-element hide-on-${settings.block?.hideOn}`}

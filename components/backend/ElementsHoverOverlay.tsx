@@ -1,3 +1,4 @@
+"use client";
 import {
   ACTIONS,
   useUpdateEmailEditor,
@@ -23,11 +24,9 @@ function ElementsHoverOverlay({ id, provided }: ElementsHoverOverlayProps) {
   return (
     <div className="elements-hover-overlay-wrapper">
       <div className="element-options">
-        <IconDragDrop
-          {...provided.dragHandleProps}
-          {...provided.draggableProps}
-          style={{ cursor: "move" }}
-        />
+        <div {...provided.dragHandleProps}>
+          <IconDragDrop />
+        </div>
         <IconTrash onClick={handleDelete} />
       </div>
     </div>

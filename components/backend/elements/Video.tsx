@@ -12,11 +12,10 @@ interface VideoProps extends VideoElement {
 function Video({ id, index, settings, onClick }: VideoProps) {
   return (
     <ErrorBoundary>
-      <Draggable draggableId={id} index={index}>
+      <Draggable draggableId={id} index={index} isDragDisabled>
         {(provided) => (
           <div
             ref={provided.innerRef}
-            {...provided.dragHandleProps}
             {...provided.draggableProps}
             className={`content-element hide-on-${settings.block?.hideOn}`}
             onClick={onClick}

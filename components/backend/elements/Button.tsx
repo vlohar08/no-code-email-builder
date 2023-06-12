@@ -17,7 +17,6 @@ function Button({ id, index, settings, onClick }: ButtonProps) {
         {(provided) => (
           <div
             ref={provided.innerRef}
-            {...provided.dragHandleProps}
             {...provided.draggableProps}
             onClick={onClick}
             className={`content-element hide-on-${settings.block?.hideOn}`}

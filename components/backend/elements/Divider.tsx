@@ -16,7 +16,6 @@ function Divider({ id, settings, index, onClick }: DividerProps) {
         {(provided) => (
           <div
             ref={provided.innerRef}
-            {...provided.dragHandleProps}
             {...provided.draggableProps}
             onClick={onClick}
             className={`content-element hide-on-${settings.block?.hideOn}`}

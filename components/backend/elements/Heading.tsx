@@ -21,6 +21,7 @@ function Heading({ id, settings, index, onClick }: HeadingProps) {
   letter-spacing: ${settings.letterSpacing}px;
   font-family: ${startCase(settings.fontFamily)};
   ">${settings.content}</${settings.title}>`;
+  console.log(index);
 
   return (
     <ErrorBoundary>
@@ -28,10 +29,9 @@ function Heading({ id, settings, index, onClick }: HeadingProps) {
         {(provided) => (
           <div
             ref={provided.innerRef}
+            {...provided.draggableProps}
             onClick={onClick}
             className={`content-element hide-on-${settings.block?.hideOn} ${settings.fontFamily}-font`}
-            {...provided.dragHandleProps}
-            {...provided.draggableProps}
             style={{
               padding:
                 typeof settings.block.padding === "number"
