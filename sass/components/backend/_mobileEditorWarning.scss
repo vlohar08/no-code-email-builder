@@ -1,0 +1,22 @@
+@use "../../abstracts/" as *;
+
+.mobile-editor-warning-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 70px);
+  a {
+    font-size: 14px;
+  }
+  img {
+    height: auto;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 24px;
+    text-align: center;
+    line-height: 1;
+    margin-top: 20px;
+  }
+}

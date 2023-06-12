@@ -10,7 +10,7 @@ function EmailContent() {
   const { settings, content } = useEmailEditor();
   return (
     <ErrorBoundary>
-      <Droppable droppableId="email-content" direction="vertical">
+      <Droppable droppableId="email-content">
         {(provided, snapshot) => (
           <div
             {...provided.droppableProps}
