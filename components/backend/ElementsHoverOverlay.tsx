@@ -14,7 +14,8 @@ type ElementsHoverOverlayProps = {
 
 function ElementsHoverOverlay({ id, provided }: ElementsHoverOverlayProps) {
   const updateEmailEditor = useUpdateEmailEditor();
-  function handleDelete() {
+  function handleDelete(e: React.MouseEvent<SVGSVGElement, MouseEvent>) {
+    e.stopPropagation();
     updateEmailEditor({
       type: ACTIONS.DELETE_ELEMENT,
       payload: id,

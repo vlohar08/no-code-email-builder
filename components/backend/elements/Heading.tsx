@@ -21,7 +21,6 @@ function Heading({ id, settings, index, onClick }: HeadingProps) {
   letter-spacing: ${settings.letterSpacing}px;
   font-family: ${startCase(settings.fontFamily)};
   ">${settings.content}</${settings.title}>`;
-  console.log(index);
 
   return (
     <ErrorBoundary>
