@@ -6,7 +6,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import NoEmailsFoundSvg from "@/assets/illustrations/no-emails-found.svg";
 import toast from "react-hot-toast";
-import { database } from "@/appwrite/client_init";
+import { database, storage } from "@/appwrite/client_init";
 import { ID } from "appwrite";
 import { defaultValues } from "@/context/EmailEditorContextProvider";
 import { useRouter } from "next/navigation";
@@ -45,7 +45,7 @@ function App() {
     toast.promise(newEmail, {
       loading: "Creating a new email",
       success: (res) => {
-        setTimeout(() => router.push("/app/" + res.$id), 2000);
+        router.push("/app/" + res.$id);
         return "Email Created! Redirecting to the edit page";
       },
       error: (err) => {
@@ -54,21 +54,30 @@ function App() {
     });
   }
 
-  function handleDeleteEmail(id: string) {
-    const deleteEmailPromise = database.deleteDocument(
-      process.env.NEXT_PUBLIC_DATABASE_ID as string,
-      process.env.NEXT_PUBLIC_COLLECTION_ID as string,
-      id
-    );
-    toast.promise(deleteEmailPromise, {
-      loading: "Deleting the selected email",
-      success: () => {
+  async function handleDeleteEmail(id: string, deleteEmailScreenshot: boolean) {
+    const deleteToast = toast.loading("Deleting the selected email");
+    try {
+      if (deleteEmailScreenshot) {
+        await storage.deleteFile(
+          process.env.NEXT_PUBLIC_BUCKET_ID as string,
+          id
+        );
+      }
+      await database.deleteDocument(
+        process.env.NEXT_PUBLIC_DATABASE_ID as string,
+        process.env.NEXT_PUBLIC_COLLECTION_ID as string,
+        id
+      );
+      toast.dismiss(deleteToast);
+      toast.success(() => {
         const newEmails = emails.filter((email) => email.$id !== id);
         setEmails(newEmails);
         return "Email Deleted";
-      },
-      error: "The selected email can't be deleted",
-    });
+      });
+    } catch (error) {
+      toast.dismiss(deleteToast);
+      toast.error("The selected email can't be deleted");
+    }
   }
 
   function handlePopup() {

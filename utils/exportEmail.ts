@@ -2,6 +2,8 @@ import { startCase } from "lodash";
 
 function exportEmail(email: any) {
   const globalSettings = email.settings;
+  const googleFonts = ["Roboto", "Lato", "Inter"];
+  const usedFonts = new Set();
   function renderEmail(content: any) {
     return content.map((element: any) => {
       const { settings } = element;
@@ -14,6 +16,12 @@ function exportEmail(email: any) {
           //CLASSNAMES
           div.classList.add(`hide-on-${settings.block?.hideOn}`);
 
+          //FONT CHECK
+          const font = startCase(settings.fontFamily);
+          if (googleFonts.includes(font)) {
+            usedFonts.add(font);
+          }
+
           //WRAPPER STYLES
           div.style.padding =
             typeof settings.block.padding === "number"
@@ -22,7 +30,7 @@ function exportEmail(email: any) {
 
           //HEADING STYLES
           heading.innerHTML = settings.content;
-          heading.style.fontFamily = `${startCase(settings.fontFamily)}`;
+          heading.style.fontFamily = font;
           heading.style.fontWeight = settings.fontWeight;
           heading.style.fontSize = `${settings.fontSize}px`;
           heading.style.color = settings.textColor;
@@ -61,7 +69,7 @@ function exportEmail(email: any) {
           img.alt = settings.alt;
 
           //IMAGE STYLES
-          img.width =
+          img.style.width =
             typeof settings.width === "number"
               ? settings.width + "%"
               : settings.width;
@@ -110,6 +118,12 @@ function exportEmail(email: any) {
           //CLASSNAMES
           div.classList.add(`hide-on-${settings.block?.hideOn}`);
 
+          //FONT CHECK
+          const font = startCase(settings.fontFamily);
+          if (googleFonts.includes(font)) {
+            usedFonts.add(font);
+          }
+
           //WRAPPER STYLES
           div.style.padding =
             typeof settings.block.padding === "number"
@@ -117,7 +131,7 @@ function exportEmail(email: any) {
               : `${settings.block.padding.paddingTop}px ${settings.block.padding.paddingRight}px ${settings.block.padding.paddingBottom}px ${settings.block.padding.paddingLeft}px`;
 
           //INNERDIV STYLES
-          innerDiv.style.fontFamily = startCase(settings.fontFamily);
+          innerDiv.style.fontFamily = font;
           innerDiv.style.fontWeight = settings.fontWeight;
           innerDiv.style.fontSize = `${settings.fontSize}px`;
           innerDiv.style.color = settings.textColor;
@@ -139,6 +153,12 @@ function exportEmail(email: any) {
           //CLASSNAMES
           div.classList.add(`hide-on-${settings.block?.hideOn}`);
 
+          //FONT CHECK
+          const font = startCase(settings.fontFamily);
+          if (googleFonts.includes(font)) {
+            usedFonts.add(font);
+          }
+
           //WRAPPER STYLES
           div.style.padding =
             typeof settings.block.padding === "number"
@@ -149,7 +169,7 @@ function exportEmail(email: any) {
           list.start = settings.startListFrom;
 
           //LIST STYLES
-          list.style.fontFamily = startCase(settings.fontFamily);
+          list.style.fontFamily = font;
           list.style.fontWeight = settings.fontWeight;
           list.style.fontSize = `${settings.fontSize}px`;
           list.style.color = settings.textColor;
@@ -204,6 +224,7 @@ function exportEmail(email: any) {
               }
             }
             const icon = document.createElement("i");
+            icon.style.fontSize = settings.iconSize + "px";
             icon.classList.add("ti");
             icon.classList.add("ti-brand-facebook");
             link.appendChild(icon);
@@ -220,6 +241,7 @@ function exportEmail(email: any) {
               }
             }
             const icon = document.createElement("i");
+            icon.style.fontSize = settings.iconSize + "px";
             icon.classList.add("ti");
             icon.classList.add("ti-brand-instagram");
             link.appendChild(icon);
@@ -236,6 +258,7 @@ function exportEmail(email: any) {
               }
             }
             const icon = document.createElement("i");
+            icon.style.fontSize = settings.iconSize + "px";
             icon.classList.add("ti");
             icon.classList.add("ti-brand-twitter");
             link.appendChild(icon);
@@ -252,6 +275,7 @@ function exportEmail(email: any) {
               }
             }
             const icon = document.createElement("i");
+            icon.style.fontSize = settings.iconSize + "px";
             icon.classList.add("ti");
             icon.classList.add("ti-brand-linkedin");
             link.appendChild(icon);
@@ -269,6 +293,12 @@ function exportEmail(email: any) {
 
           //CLASSNAMES
           div.classList.add(`hide-on-${settings.block?.hideOn}`);
+
+          //FONT CHECK
+          const font = startCase(settings.fontFamily);
+          if (googleFonts.includes(font)) {
+            usedFonts.add(font);
+          }
 
           //WRAPPER STYLES
           div.style.padding =
@@ -293,7 +323,7 @@ function exportEmail(email: any) {
               ? settings.width + "%"
               : settings.width;
           button.style.color = settings.textColor;
-          button.style.fontFamily = startCase(settings.fontFamily);
+          button.style.fontFamily = font;
           button.style.fontSize = `${settings.fontSize}px`;
           button.style.fontWeight = settings.fontWeight;
           button.style.backgroundColor = settings.backgroundColor;
@@ -440,11 +470,8 @@ function exportEmail(email: any) {
         ><o:AllowPNG /></o:OfficeDocumentSettings></xml
   ><![endif]-->
   <!--[if !mso]><!-->
-  <link
-    href="https://fonts.googleapis.com/css?family=Roboto"
-    rel="stylesheet"
-    type="text/css"
-  />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
+
   <!--<![endif]-->
   <style>
     *,
@@ -460,9 +487,9 @@ function exportEmail(email: any) {
       padding: 0;
     }
 
-    a[x-apple-data-detectors] {
+    a {
       color: inherit !important;
-      text-decoration: inherit !important;
+      text-decoration: none;
     }
 
     .column-element {
@@ -482,7 +509,18 @@ function exportEmail(email: any) {
         width: 100%;
       }
     }
-  </style>`;
+  </style>
+  `;
+
+  //Add used Google font links in head tag
+  usedFonts.forEach((fontFamily: any) => {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(
+      fontFamily.replace(/ /g, "+")
+    )}&display=swap`;
+    head.appendChild(link);
+  });
 
   //APPEND
   html.appendChild(head);

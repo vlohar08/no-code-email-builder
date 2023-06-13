@@ -90,7 +90,7 @@ const elements: Elements = {
     index: 0,
     name: "video",
     settings: {
-      src: "https://www.youtube.com/watch?v=8om1eJrO2lU&ab_channel=MarquesBrownlee",
+      src: "",
       title: "",
       block: {
         padding: 5,

@@ -8,7 +8,7 @@ import exportEmail from "@/utils/exportEmail";
 
 type EmailDisplayCardProps = {
   data: Document.Models.Document;
-  onDelete: (id: string) => void;
+  onDelete: (id: string, deleteEmailScreenshot: boolean) => void;
   setExportCode: Dispatch<SetStateAction<string>>;
   setIsPopupEnabled: Dispatch<SetStateAction<boolean>>;
 };
@@ -57,7 +57,7 @@ function EmailDisplayCard({
             color: "white",
           }}
           leftIcon={<IconTrash />}
-          onClick={() => onDelete($id)}
+          onClick={() => onDelete($id, image.includes($id))}
         >
           Delete
         </Button>

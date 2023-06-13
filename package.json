@@ -13,6 +13,7 @@
     "appwrite": "^11.0.0",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.2",
+    "html2canvas": "^1.4.1",
     "lodash": "^4.17.21",
     "nanoid": "^4.0.2",
     "next": "13.4.2",

@@ -5,17 +5,11 @@ import {
   GlobalSettings,
 } from "@/types/EmailEditorContext.types";
 import { nanoid } from "nanoid";
-import React, {
-  Dispatch,
-  SetStateAction,
-  createContext,
-  useContext,
-  useReducer,
-  useState,
-} from "react";
+import React, { Dispatch, createContext, useContext, useReducer } from "react";
 import { cloneDeep } from "lodash";
-import { database } from "@/appwrite/client_init";
+import { database, storage } from "@/appwrite/client_init";
 import { toast } from "react-hot-toast";
+import html2canvas from "html2canvas";
 
 //Context Setup
 // @ts-ignore
@@ -25,10 +19,6 @@ const UpdateEmailEditorContext = createContext<
     type: string;
     payload: any;
   }>
->(() => {});
-export const EmailSaveContext = createContext<boolean>(false);
-export const UpdateEmailSaveContext = createContext<
-  Dispatch<SetStateAction<boolean>>
 >(() => {});
 
 //Custom Hooks
@@ -73,26 +63,49 @@ export const defaultValues: EmailEditorContextTypes = {
 //Update Email On Server
 let saveTimeout: any = null;
 async function handleUpdateEmailOnServer(state: any) {
+  //If no state return
   if (!state.id) return;
+
+  //Clear existing timeout to avoid multiple save requests
   if (saveTimeout) {
     clearTimeout(saveTimeout);
     saveTimeout = null;
   }
 
-  saveTimeout = setTimeout(() => {
-    const savePromise = database.updateDocument(
-      process.env.NEXT_PUBLIC_DATABASE_ID as string,
-      process.env.NEXT_PUBLIC_COLLECTION_ID as string,
-      state.id,
-      {
-        content: JSON.stringify(state),
-      }
-    );
-    toast.promise(savePromise, {
-      loading: "Saving",
-      success: "Saved",
-      error: "Error in Saving Email",
-    });
+  //Create a new save event
+  saveTimeout = setTimeout(async () => {
+    const savingToast = toast.loading("Saving");
+    try {
+      //Takes a email screenshot and uploads it to the appwrite storage
+      const emailContainer = document.querySelector(
+        ".email-editor-content-wrapper"
+      );
+      const canvas = await html2canvas(emailContainer as any);
+      const imageBlob = await new Promise((resolve) =>
+        canvas.toBlob(resolve, "image/png")
+      );
+      const file = new File([imageBlob as any], `${state.id}.png`);
+      await storage.createFile(
+        process.env.NEXT_PUBLIC_BUCKET_ID as string,
+        state.id,
+        file
+      );
+      const emailScreenshot = `${process.env.NEXT_PUBLIC_APPWRITE_API_ENDPOINT}/storage/buckets/${process.env.NEXT_PUBLIC_BUCKET_ID}/files/${state.id}/view?project=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID}`;
+
+      //Update the email document
+      await database.updateDocument(
+        process.env.NEXT_PUBLIC_DATABASE_ID as string,
+        process.env.NEXT_PUBLIC_COLLECTION_ID as string,
+        state.id,
+        { image: emailScreenshot, content: JSON.stringify(state) }
+      );
+
+      toast.dismiss(savingToast);
+      toast.success("Saved");
+    } catch (error) {
+      toast.dismiss(savingToast);
+      toast.error("Error in Saving Email");
+    }
   }, 3000);
 }
 
@@ -257,15 +270,10 @@ function EmailEditorContextProvider({
 }) {
   // @ts-ignore
   const [emailEditor, dispatch] = useReducer(handleEmailEditor, defaultValues);
-  const [isSaving, setIsSaving] = useState(false);
   return (
     <EmailEditorContext.Provider value={emailEditor}>
       <UpdateEmailEditorContext.Provider value={dispatch}>
-        <EmailSaveContext.Provider value={isSaving}>
-          <UpdateEmailSaveContext.Provider value={setIsSaving}>
-            {children}
-          </UpdateEmailSaveContext.Provider>
-        </EmailSaveContext.Provider>
+        {children}
       </UpdateEmailEditorContext.Provider>
     </EmailEditorContext.Provider>
   );

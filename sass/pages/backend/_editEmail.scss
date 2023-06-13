@@ -4,7 +4,7 @@
   display: flex;
   .email-editor {
     width: calc(100vw - 400px);
-    height: auto;
+    height: calc(100vh - 70px);
     overflow: auto;
   }
 }
