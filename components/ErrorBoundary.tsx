@@ -15,7 +15,11 @@ class ErrorBoundary extends React.Component {
   render() {
     // @ts-ignore
     if (this.state?.hasError) {
-      return <div>Something is wrong.</div>;
+      return (
+        <div className="error-boundary-wrapper">
+          <p>Something is wrong</p>
+        </div>
+      );
     }
     // @ts-ignore
     return this.props.children;

@@ -5,7 +5,7 @@ import {
   ACTIONS,
   useUpdateEmailEditor,
 } from "@/context/EmailEditorContextProvider";
-import React from "react";
+import React, { useEffect } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { database } from "@/appwrite/client_init";
 import { useRouter } from "next/navigation";
@@ -16,11 +16,13 @@ function EditEmail({ params }: { params: { emailId: string } }) {
   const updateEmailEditor = useUpdateEmailEditor();
   const router = useRouter();
 
-  WebFont.load({
-    google: {
-      families: ["Inter", "Roboto", "Lato"],
-    },
-  });
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ["Inter", "Roboto", "Lato"],
+      },
+    });
+  }, []);
 
   async function fetchEmailContent() {
     try {

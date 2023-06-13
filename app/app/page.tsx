@@ -1,17 +1,18 @@
 "use client";
+import dynamic from "next/dynamic";
 import Button from "@/components/Button";
 import EmailDisplayCard from "@/components/backend/EmailDisplayCard";
 import { IconPlus } from "@tabler/icons-react";
 import Image from "next/image";
 import React, { useState } from "react";
-import NoEmailsFoundSvg from "@/assets/illustrations/no-emails-found.svg";
 import toast from "react-hot-toast";
 import { database, storage } from "@/appwrite/client_init";
 import { ID } from "appwrite";
 import { defaultValues } from "@/context/EmailEditorContextProvider";
 import { useRouter } from "next/navigation";
 import LoadingAndErrorManager from "@/components/LoadingAndErrorManager";
-import ExportEmailPopup from "@/components/ExportEmailPopup";
+import NoEmailsFoundSvg from "@/assets/illustrations/no-emails-found.svg";
+const ExportEmailPopup = dynamic(() => import("@/components/ExportEmailPopup"));
 import { nanoid } from "nanoid";
 
 function App() {
