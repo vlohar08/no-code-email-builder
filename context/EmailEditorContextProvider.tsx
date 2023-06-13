@@ -106,7 +106,7 @@ async function handleUpdateEmailOnServer(state: any) {
       toast.dismiss(savingToast);
       toast.error("Error in Saving Email");
     }
-  }, 3000);
+  }, 8000);
 }
 
 //Reducer Function
