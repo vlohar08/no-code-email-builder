@@ -72,6 +72,9 @@
   }
   @media (max-width: $laptop) {
     padding: 40px;
+    .price-cards-wrapper {
+      flex-wrap: wrap;
+    }
     h5 {
       font-size: 20px;
     }

@@ -5,9 +5,9 @@
   padding: 70px 20px;
   background-color: white;
   background-image: url("/assets/backgrounds/purple-pink-gradient-1.jpg");
-  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
+  background-size: cover;
   > div {
     margin: auto;
     max-width: var(--content-width);

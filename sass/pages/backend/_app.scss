@@ -13,7 +13,12 @@
     flex-direction: column;
     gap: 15px;
     h2 {
-      font-size: 18px;
+      font-size: 21px;
+    }
+    img {
+      width: 90%;
+      height: auto;
+      max-width: 600px;
     }
   }
 }
