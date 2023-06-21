@@ -41,6 +41,7 @@ export const ACTIONS = {
   DELETE_ELEMENT: "delete-element",
   LOAD_EMAIL_FROM_SERVER: "load-email-from-server",
   MOVE_SECTION_ELEMENT: "move-section-element",
+  ADD_OR_REMOVE_COLUMN_IN_SECTION: "add-or-remove-column-in-section",
 };
 
 //Default Values
@@ -255,6 +256,25 @@ function handleEmailEditor(
       newState.content.splice(source.index, 1);
       newState.content.splice(destination.index, 0, draggedElement);
       handleUpdateEmailOnServer(newState);
+      return newState;
+    }
+    case ACTIONS.ADD_OR_REMOVE_COLUMN_IN_SECTION: {
+      const newState = cloneDeep(state);
+      const section: any = newState.content.find(
+        (section: any) => section.id === action.payload.id
+      );
+      if (section) {
+        section.settings.totalColumns = action.payload.value;
+        if (action.payload.type === "increment") {
+          section.columns.push({
+            id: "column-" + nanoid(10),
+            name: "column",
+            content: [],
+          });
+        } else {
+          section.columns.splice(section.columns.length - 1, 1);
+        }
+      }
       return newState;
     }
     default: {

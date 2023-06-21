@@ -30,6 +30,7 @@ const elements: Elements = {
     name: "section",
     index: 0,
     settings: {
+      totalColumns: 1,
       contentAreaBackgroundColor: "#f6f6f6",
       contentAreaRoundedCorners: 0,
       contentAreaBorder: {

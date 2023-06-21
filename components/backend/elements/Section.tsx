@@ -37,6 +37,8 @@ function Section({
           >
             <div
               style={{
+                display: "grid",
+                gridTemplateColumns: `repeat(${settings.totalColumns}, 1fr)`,
                 maxWidth: globalSettings.contentAreaWidth,
                 backgroundColor: settings.contentAreaBackgroundColor,
                 ...(settings.showBackgroundImage && {

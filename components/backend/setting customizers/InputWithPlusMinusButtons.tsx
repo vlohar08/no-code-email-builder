@@ -24,11 +24,11 @@ function InputWithPlusMinusButtons({
 }: InputWithPlusMinusButtonsProps) {
   const updateEmailEditor = useUpdateEmailEditor();
   function handleChange(type: "increment" | "decrement") {
+    if (state === max && type === "increment") return;
+    if (state === min && type === "decrement") return;
     if (onChange) {
       onChange(type);
     } else {
-      if (state === max && type === "increment") return;
-      if (state === min && type === "decrement") return;
       updateEmailEditor({
         type: ACTIONS.UPDATE_ELEMENT_SETTINGS,
         payload: {

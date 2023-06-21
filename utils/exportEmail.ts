@@ -409,9 +409,14 @@ function exportEmail(email: any) {
               (innerDiv.style.backgroundPosition =
                 settings.isBackgroundImageCentered ? "center" : "");
           }
+          innerDiv.style.display = "grid";
+          innerDiv.style.gridTemplateColumns = `repeat(${settings.totalColumns},1fr)`;
 
           //APPEND
-          innerDiv.appendChild(renderEmail(element.columns)[0]);
+          const allColumns = renderEmail(element.columns);
+          allColumns.forEach((column: any) => {
+            innerDiv.appendChild(column);
+          });
           section.appendChild(innerDiv);
 
           return section;
@@ -419,13 +424,17 @@ function exportEmail(email: any) {
         case "column": {
           //HTML NODES
           const column = document.createElement("div");
+          column.style.overflow = "hidden";
 
           //CLASSNAMES
           column.classList.add("column-element");
 
           //APPEND
           if (element.content[0]) {
-            column.appendChild(renderEmail(element.content)[0]);
+            const allColumnElements = renderEmail(element.content);
+            allColumnElements.forEach((node: HTMLElement) => {
+              column.appendChild(node);
+            });
           }
 
           return column;

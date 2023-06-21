@@ -29,12 +29,19 @@ export type Border = {
   borderColor: string;
 };
 
+export type SectionColumn = {
+  id: string;
+  name: string;
+  content: {}[];
+};
+
 export type SectionElement = {
   id: string;
   index: number;
   name: "section";
   hideOn?: HideOn;
   settings: {
+    totalColumns: number;
     contentAreaBackgroundColor: string;
     contentAreaRoundedCorners: number | BorderRadius;
     contentAreaBorder: Border;
@@ -43,11 +50,7 @@ export type SectionElement = {
     shouldBackgroundImageRepeat: boolean;
     isBackgroundImageCentered: boolean;
   };
-  columns: {
-    id: string;
-    name: string;
-    content: {}[];
-  }[];
+  columns: SectionColumn[];
 };
 
 export type HeadingElement = {
