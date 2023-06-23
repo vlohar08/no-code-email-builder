@@ -33,22 +33,7 @@ function EmailContent() {
             }}
           >
             <div className="email-editor-content-wrapper">
-              {content.length ? (
-                <RenderEmailContent settings={settings} content={content} />
-              ) : (
-                <div
-                  className="column-element"
-                  style={{
-                    maxWidth: settings.contentAreaWidth,
-                    margin:
-                      settings.contentAreaAlignment === "center"
-                        ? "0 auto"
-                        : "",
-                  }}
-                >
-                  <EmptyColumn />
-                </div>
-              )}
+              <RenderEmailContent settings={settings} content={content} />
               {provided.placeholder}
             </div>
           </div>

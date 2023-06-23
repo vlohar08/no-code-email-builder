@@ -58,7 +58,34 @@ export const defaultValues: EmailEditorContextTypes = {
     shouldBackgroundImageRepeat: false,
     isBackgroundImageCentered: false,
   },
-  content: [],
+  content: [
+    {
+      id: "section-i-FCEKsyi_v7",
+      name: "section",
+      index: 0,
+      settings: {
+        totalColumns: 1,
+        contentAreaBackgroundColor: "#f6f6f6",
+        contentAreaRoundedCorners: 0,
+        contentAreaBorder: {
+          borderWidth: 0,
+          borderType: "solid",
+          borderColor: "#000000",
+        },
+        showBackgroundImage: false,
+        backgroundImageUrl: "",
+        shouldBackgroundImageRepeat: false,
+        isBackgroundImageCentered: false,
+      },
+      columns: [
+        {
+          id: "column-i-FCEKsyi_v7",
+          name: "column",
+          content: [],
+        },
+      ],
+    },
+  ],
 };
 
 //Update Email On Server
