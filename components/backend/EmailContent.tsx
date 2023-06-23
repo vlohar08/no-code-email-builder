@@ -4,13 +4,16 @@ import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import RenderEmailContent from "./RenderEmailContent";
 import ErrorBoundary from "../ErrorBoundary";
-import EmptyColumn from "./EmptyColumn";
 
-function EmailContent() {
+type EmailContentProps = {
+  isDropDisabled: boolean;
+};
+
+function EmailContent({ isDropDisabled }: EmailContentProps) {
   const { settings, content } = useEmailEditor();
   return (
     <ErrorBoundary>
-      <Droppable droppableId="email-content">
+      <Droppable droppableId="email-content" isDropDisabled={isDropDisabled}>
         {(provided, snapshot) => (
           <div
             {...provided.droppableProps}

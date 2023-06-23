@@ -5,14 +5,15 @@ import {
   ACTIONS,
   useUpdateEmailEditor,
 } from "@/context/EmailEditorContextProvider";
-import React, { useEffect } from "react";
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
+import React, { useEffect, useState } from "react";
+import { DragDropContext, DragUpdate, DropResult } from "react-beautiful-dnd";
 import { database } from "@/appwrite/client_init";
 import { useRouter } from "next/navigation";
 import LoadingAndErrorManager from "@/components/LoadingAndErrorManager";
 import WebFont from "webfontloader";
 
 function EditEmail({ params }: { params: { emailId: string } }) {
+  const [isDropDisabled, setIsDropDisabled] = useState(false);
   const updateEmailEditor = useUpdateEmailEditor();
   const router = useRouter();
 
@@ -85,14 +86,22 @@ function EditEmail({ params }: { params: { emailId: string } }) {
     }
   }
 
+  function handleDragUpdate(result: DragUpdate) {
+    if (result?.destination?.droppableId.includes("column")) {
+      setIsDropDisabled(true);
+    } else {
+      setIsDropDisabled(false);
+    }
+  }
+
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
+    <DragDropContext onDragEnd={onDragEnd} onDragUpdate={handleDragUpdate}>
       <LoadingAndErrorManager
         onLoad={fetchEmailContent}
         errorMessage="Redirecting to the dashboard..."
       >
         <div className="edit-email-wrapper">
-          <EmailContent />
+          <EmailContent isDropDisabled={isDropDisabled} />
           <EditEmailSidebar />
         </div>
       </LoadingAndErrorManager>
