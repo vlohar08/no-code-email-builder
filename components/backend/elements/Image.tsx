@@ -6,7 +6,10 @@ import { Draggable } from "react-beautiful-dnd";
 import ElementsHoverOverlay from "../ElementsHoverOverlay";
 
 interface ImageProps extends ImageElement {
-  onClick: (element: any) => void;
+  onClick: (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    element: any
+  ) => void;
 }
 
 function Image({ id, settings, index, onClick }: ImageProps) {
@@ -18,7 +21,7 @@ function Image({ id, settings, index, onClick }: ImageProps) {
             {...provided.draggableProps}
             ref={provided.innerRef}
             className={`content-element hide-on-${settings.block?.hideOn}`}
-            onClick={onClick}
+            onClick={(e) => onClick(e, { id, name: "image", settings })}
             style={{
               padding:
                 typeof settings.block.padding === "number"
@@ -52,4 +55,4 @@ function Image({ id, settings, index, onClick }: ImageProps) {
   );
 }
 
-export default Image;
+export default React.memo(Image);

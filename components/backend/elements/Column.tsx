@@ -32,4 +32,4 @@ function Column({ id, children }: ColumnProps) {
   );
 }
 
-export default Column;
+export default React.memo(Column);

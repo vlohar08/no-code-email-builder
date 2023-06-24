@@ -30,6 +30,9 @@
       font-size: 18px;
       user-select: none;
     }
+    img {
+      margin: 0 auto 5px;
+    }
     &:hover {
       background-color: rgb(var(--secondary-bg-color));
     }

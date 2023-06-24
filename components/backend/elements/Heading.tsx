@@ -7,7 +7,10 @@ import ElementsHoverOverlay from "../ElementsHoverOverlay";
 import { startCase } from "lodash";
 
 interface HeadingProps extends HeadingElement {
-  onClick: (element: any) => void;
+  onClick: (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    element: any
+  ) => void;
 }
 
 function Heading({ id, settings, index, onClick }: HeadingProps) {
@@ -29,7 +32,7 @@ function Heading({ id, settings, index, onClick }: HeadingProps) {
           <div
             ref={provided.innerRef}
             {...provided.draggableProps}
-            onClick={onClick}
+            onClick={(e) => onClick(e, { id, name: "heading", settings })}
             className={`content-element hide-on-${settings.block?.hideOn} ${settings.fontFamily}-font`}
             style={{
               padding:
@@ -47,4 +50,4 @@ function Heading({ id, settings, index, onClick }: HeadingProps) {
   );
 }
 
-export default Heading;
+export default React.memo(Heading);

@@ -3,9 +3,10 @@ import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { camelCase } from "lodash";
+import Image from "next/image";
 
 type EditEmailSidebarElementProps = {
-  icon: React.ReactNode;
+  icon: string;
   title: string;
   index: number;
 };
@@ -26,7 +27,7 @@ function EditEmailSidebarElement({
               {...provided.dragHandleProps}
               {...provided.draggableProps}
             >
-              {icon}
+              <Image src={icon} width={24} height={24} alt={title} />
               <h5>{title}</h5>
             </div>
           )}
@@ -36,4 +37,4 @@ function EditEmailSidebarElement({
   );
 }
 
-export default EditEmailSidebarElement;
+export default React.memo(EditEmailSidebarElement);

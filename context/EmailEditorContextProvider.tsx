@@ -241,7 +241,7 @@ function handleEmailEditor(
                 elements[draggableId as keyof typeof elements]
               );
               element.id = nanoid(10);
-              column.content.push(element);
+              column.content.splice(destination.index, 0, element);
             }
           }
         });

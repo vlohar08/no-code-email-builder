@@ -14,7 +14,7 @@ interface SectionProps {
   settings: SectionElement["settings"];
   globalSettings: GlobalSettings;
   index: number;
-  onClick: (element: any) => void;
+  onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>, element: any) => void;
 }
 
 function Section({
@@ -31,7 +31,7 @@ function Section({
         {(provided) => (
           <section
             className="section-element"
-            onClick={onClick}
+            onClick={(e) => onClick(e, { id, name: "section", settings })}
             ref={provided.innerRef}
             {...provided.draggableProps}
           >
@@ -67,4 +67,4 @@ function Section({
   );
 }
 
-export default Section;
+export default React.memo(Section);

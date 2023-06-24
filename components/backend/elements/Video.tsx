@@ -6,7 +6,10 @@ import { Draggable } from "react-beautiful-dnd";
 import ElementsHoverOverlay from "../ElementsHoverOverlay";
 
 interface VideoProps extends VideoElement {
-  onClick: (element: any) => void;
+  onClick: (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    element: any
+  ) => void;
 }
 
 function Video({ id, index, settings, onClick }: VideoProps) {
@@ -18,7 +21,7 @@ function Video({ id, index, settings, onClick }: VideoProps) {
             ref={provided.innerRef}
             {...provided.draggableProps}
             className={`content-element hide-on-${settings.block?.hideOn}`}
-            onClick={onClick}
+            onClick={(e) => onClick(e, { id, name: "video", settings })}
             style={{
               position: "relative",
               padding:
@@ -41,4 +44,4 @@ function Video({ id, index, settings, onClick }: VideoProps) {
   );
 }
 
-export default Video;
+export default React.memo(Video);

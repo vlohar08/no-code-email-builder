@@ -7,7 +7,10 @@ import ElementsHoverOverlay from "../ElementsHoverOverlay";
 import { startCase } from "lodash";
 
 interface ListProps extends ListElement {
-  onClick: (element: any) => void;
+  onClick: (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    element: any
+  ) => void;
 }
 
 function List({ id, settings, index, onClick }: ListProps) {
@@ -30,7 +33,7 @@ function List({ id, settings, index, onClick }: ListProps) {
           <div
             ref={provided.innerRef}
             {...provided.draggableProps}
-            onClick={onClick}
+            onClick={(e) => onClick(e, { id, name: "list", settings })}
             className={`content-element hide-on-${settings.block?.hideOn}`}
             style={{
               padding:
@@ -48,4 +51,4 @@ function List({ id, settings, index, onClick }: ListProps) {
   );
 }
 
-export default List;
+export default React.memo(List);

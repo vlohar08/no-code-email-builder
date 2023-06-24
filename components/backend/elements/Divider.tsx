@@ -6,7 +6,10 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import ElementsHoverOverlay from "../ElementsHoverOverlay";
 
 interface DividerProps extends DividerElement {
-  onClick: (element: any) => void;
+  onClick: (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    element: any
+  ) => void;
 }
 
 function Divider({ id, settings, index, onClick }: DividerProps) {
@@ -17,7 +20,7 @@ function Divider({ id, settings, index, onClick }: DividerProps) {
           <div
             ref={provided.innerRef}
             {...provided.draggableProps}
-            onClick={onClick}
+            onClick={(e) => onClick(e, { id, name: "divider", settings })}
             className={`content-element hide-on-${settings.block?.hideOn}`}
             style={{
               display: "flex",
@@ -46,4 +49,4 @@ function Divider({ id, settings, index, onClick }: DividerProps) {
   );
 }
 
-export default Divider;
+export default React.memo(Divider);

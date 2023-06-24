@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useCallback } from "react";
 import Heading from "./elements/Heading";
 import Section from "./elements/Section";
 import Column from "./elements/Column";
@@ -24,14 +24,14 @@ type RenderEmailContentProps = {
 
 function RenderEmailContent({ content, settings }: RenderEmailContentProps) {
   const updateEmailEditor = useUpdateEmailEditor();
-  function handleClick(e: any, element: any) {
+  const handleClick = useCallback((e: any, element: any) => {
     e.stopPropagation();
     const { name, id, settings } = element;
     updateEmailEditor({
       type: ACTIONS.CHANGE_SIDEBAR_SETTINGS_TAB_CONTENT,
       payload: { element: name, id, settings },
     });
-  }
+  }, []);
 
   function renderEmail(content: any) {
     let elementIndex = 0;
@@ -45,7 +45,7 @@ function RenderEmailContent({ content, settings }: RenderEmailContentProps) {
               key={element.id}
               {...element}
               index={elementIndex}
-              onClick={(e) => handleClick(e, element)}
+              onClick={handleClick}
             />
           );
         case "image":
@@ -56,7 +56,7 @@ function RenderEmailContent({ content, settings }: RenderEmailContentProps) {
               key={element.id}
               {...element}
               index={elementIndex}
-              onClick={(e) => handleClick(e, element)}
+              onClick={handleClick}
             />
           );
         case "video":
@@ -66,7 +66,7 @@ function RenderEmailContent({ content, settings }: RenderEmailContentProps) {
               key={element.id}
               {...element}
               index={elementIndex}
-              onClick={(e) => handleClick(e, element)}
+              onClick={handleClick}
             />
           );
         case "textBlock":
@@ -76,7 +76,7 @@ function RenderEmailContent({ content, settings }: RenderEmailContentProps) {
               key={element.id}
               {...element}
               index={elementIndex}
-              onClick={(e) => handleClick(e, element)}
+              onClick={handleClick}
             />
           );
         case "list":
@@ -86,7 +86,7 @@ function RenderEmailContent({ content, settings }: RenderEmailContentProps) {
               key={element.id}
               {...element}
               index={elementIndex}
-              onClick={(e) => handleClick(e, element)}
+              onClick={handleClick}
             />
           );
         case "social":
@@ -96,7 +96,7 @@ function RenderEmailContent({ content, settings }: RenderEmailContentProps) {
               key={element.id}
               {...element}
               index={elementIndex}
-              onClick={(e) => handleClick(e, element)}
+              onClick={handleClick}
             />
           );
         case "button":
@@ -106,7 +106,7 @@ function RenderEmailContent({ content, settings }: RenderEmailContentProps) {
               key={element.id}
               {...element}
               index={elementIndex}
-              onClick={(e) => handleClick(e, element)}
+              onClick={handleClick}
             />
           );
         case "divider":
@@ -116,7 +116,7 @@ function RenderEmailContent({ content, settings }: RenderEmailContentProps) {
               key={element.id}
               {...element}
               index={elementIndex}
-              onClick={(e) => handleClick(e, element)}
+              onClick={handleClick}
             />
           );
         case "spacer":
@@ -126,7 +126,7 @@ function RenderEmailContent({ content, settings }: RenderEmailContentProps) {
               key={element.id}
               {...element}
               index={elementIndex}
-              onClick={(e) => handleClick(e, element)}
+              onClick={handleClick}
             />
           );
         case "section":
@@ -138,7 +138,7 @@ function RenderEmailContent({ content, settings }: RenderEmailContentProps) {
               {...element}
               globalSettings={settings}
               index={sectionIndex}
-              onClick={(e) => handleClick(e, element)}
+              onClick={handleClick}
             >
               {renderEmail(element.columns)}
             </Section>

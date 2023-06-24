@@ -7,7 +7,10 @@ import ElementsHoverOverlay from "../ElementsHoverOverlay";
 import { startCase } from "lodash";
 
 interface ButtonProps extends ButtonElement {
-  onClick: (element: any) => void;
+  onClick: (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    element: any
+  ) => void;
 }
 
 function Button({ id, index, settings, onClick }: ButtonProps) {
@@ -18,7 +21,7 @@ function Button({ id, index, settings, onClick }: ButtonProps) {
           <div
             ref={provided.innerRef}
             {...provided.draggableProps}
-            onClick={onClick}
+            onClick={(e) => onClick(e, { id, name: "button", settings })}
             className={`content-element hide-on-${settings.block?.hideOn}`}
             style={{
               display: "flex",
@@ -69,4 +72,4 @@ function Button({ id, index, settings, onClick }: ButtonProps) {
   );
 }
 
-export default Button;
+export default React.memo(Button);

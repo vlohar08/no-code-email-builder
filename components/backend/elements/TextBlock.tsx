@@ -6,7 +6,10 @@ import ElementsHoverOverlay from "../ElementsHoverOverlay";
 import { startCase } from "lodash";
 
 interface TextBlockProps extends TextBlockElement {
-  onClick: (element: any) => void;
+  onClick: (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    element: any
+  ) => void;
 }
 
 function TextBlock({ id, settings, index, onClick }: TextBlockProps) {
@@ -16,7 +19,7 @@ function TextBlock({ id, settings, index, onClick }: TextBlockProps) {
         <div
           ref={provided.innerRef}
           {...provided.draggableProps}
-          onClick={onClick}
+          onClick={(e) => onClick(e, { id, name: "textBlock", settings })}
           className={`content-element hide-on-${settings.block?.hideOn}`}
           style={{
             padding:
@@ -44,4 +47,4 @@ function TextBlock({ id, settings, index, onClick }: TextBlockProps) {
   );
 }
 
-export default TextBlock;
+export default React.memo(TextBlock);

@@ -23,52 +23,52 @@ function SidebarElements() {
           ref={provided.innerRef}
         >
           <EditEmailSidebarElement
-            icon={<IconDeviceImac />}
+            icon="/assets/icons/device-imac.svg"
             title="Section"
             index={1}
           />
           <EditEmailSidebarElement
-            icon={<IconHeading />}
+            icon="/assets/icons/heading.svg"
             title="Heading"
             index={2}
           />
           <EditEmailSidebarElement
-            icon={<IconPhotoPlus />}
+            icon="/assets/icons/photo-plus.svg"
             title="Image"
             index={3}
           />
           <EditEmailSidebarElement
-            icon={<IconVideoPlus />}
+            icon="/assets/icons/video-plus.svg"
             title="Video"
             index={4}
           />
           <EditEmailSidebarElement
-            icon={<IconTextPlus />}
+            icon="/assets/icons/text-plus.svg"
             title="Text Block"
             index={5}
           />
           <EditEmailSidebarElement
-            icon={<IconListDetails />}
+            icon="/assets/icons/list-details.svg"
             title="List"
             index={6}
           />
           <EditEmailSidebarElement
-            icon={<IconSocial />}
+            icon="/assets/icons/social.svg"
             title="Social"
             index={7}
           />
           <EditEmailSidebarElement
-            icon={<IconRectangle />}
+            icon="/assets/icons/rectangle.svg"
             title="Button"
             index={8}
           />
           <EditEmailSidebarElement
-            icon={<IconSeparatorHorizontal />}
+            icon="/assets/icons/separator-horizontal.svg"
             title="Divider"
             index={9}
           />
           <EditEmailSidebarElement
-            icon={<IconSpace />}
+            icon="/assets/icons/space.svg"
             title="Spacer"
             index={10}
           />

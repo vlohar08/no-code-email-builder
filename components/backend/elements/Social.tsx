@@ -12,7 +12,10 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import ElementsHoverOverlay from "../ElementsHoverOverlay";
 
 interface SocialProps extends SocialElement {
-  onClick: (element: any) => void;
+  onClick: (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    element: any
+  ) => void;
 }
 
 function Social({ id, settings, index, onClick }: SocialProps) {
@@ -33,7 +36,7 @@ function Social({ id, settings, index, onClick }: SocialProps) {
           <div
             ref={provided.innerRef}
             {...provided.draggableProps}
-            onClick={onClick}
+            onClick={(e) => onClick(e, { id, name: "social", settings })}
             className={`content-element hide-on-${settings.block?.hideOn}`}
             style={{
               display: "flex",
@@ -85,4 +88,4 @@ function Social({ id, settings, index, onClick }: SocialProps) {
   );
 }
 
-export default Social;
+export default React.memo(Social);

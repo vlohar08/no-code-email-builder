@@ -6,7 +6,10 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import ElementsHoverOverlay from "../ElementsHoverOverlay";
 
 interface SpacerProps extends SpacerElement {
-  onClick: (element: any) => void;
+  onClick: (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    element: any
+  ) => void;
 }
 
 function Spacer({ id, settings, index, onClick }: SpacerProps) {
@@ -17,7 +20,7 @@ function Spacer({ id, settings, index, onClick }: SpacerProps) {
           <div
             ref={provided.innerRef}
             {...provided.draggableProps}
-            onClick={onClick}
+            onClick={(e) => onClick(e, { id, name: "spacer", settings })}
             className={`content-element hide-on-${settings.block?.hideOn}`}
             style={{
               padding:
@@ -39,4 +42,4 @@ function Spacer({ id, settings, index, onClick }: SpacerProps) {
   );
 }
 
-export default Spacer;
+export default React.memo(Spacer);
